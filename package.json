@@ -25,8 +25,11 @@
     "phantomjs-prebuilt": "~2.1.14",
     "react-addons-test-utils": "~15.6.2"
   },
-  "scripts": {
+  "scripts": { 
     "start": "./bin/webpack-dev-server",
     "test": "node_modules/.bin/karma start karma.conf.js"
+  },
+  "engines": {
+    "node":">=4.0"
   }
 }
