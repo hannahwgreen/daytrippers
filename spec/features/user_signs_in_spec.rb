@@ -9,7 +9,6 @@ feature 'user signs in', %Q{
     user = FactoryBot.create(:user)
     user.confirm
 
-
     visit new_user_session_path
 
     fill_in 'Email', with: user.email
