@@ -11,6 +11,7 @@ class Api::V1::TripsController < ApplicationController
 
   def create
     trip = Trip.new(trip_params)
+
     if trip.save
       render json: { trip: trip }
     else
@@ -20,20 +21,19 @@ class Api::V1::TripsController < ApplicationController
 
   def update
     trip = Trip.find(params[:id]).update(trip_params)
-    render json: { trip: trip }
+    render json: { trip: Trip.find(params[:id]) }
   end
 
   def destroy
     trip = Trip.find(params[:id])
     trip.destroy
     render json: { message: 'Your trip has been deleted' }
-
   end
 
 private
 
   def trip_params
-  params.require(:trips).permit(
-    :name, :description. :image_url)
+  params.require(:trip).permit(
+    :name, :description, :image_url)
   end
 end
