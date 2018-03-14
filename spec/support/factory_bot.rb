@@ -7,5 +7,5 @@ FactoryBot.define do
     password_confirmation 'password'
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'photo.jpg'), 'image/jpeg') }
   end
-  
+
 end
