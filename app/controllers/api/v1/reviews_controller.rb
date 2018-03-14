@@ -1,36 +1,30 @@
 class Api::V1::ReviewsController < ApplicationController
   def index
-    @reviews = Review.all
+    render json: { review: Review.all }
   end
 
   def show
-    @review = Review.find(params[:id])
-  end
-
-  def new
-    @review = Review.new
+    render json: { review: Review.find(params[:id]) }
   end
 
   def create
-    @review = Review.new(review_params)
-    if @review.save
-      render :new
+    review = Review.new(review_params)
+    if review.save
+      render json: { review: review }
     else
-      errors = @review.errors.full_messages
+      render json: { errors: review.errors.full_messages }
     end
-    flash[:alert] = errors
-  end
-
-  def edit
-    @review = Review.find(params[:id])
   end
 
   def update
-    @review = Review.find(params[:id]).update(review_params)
+    review = Review.find(params[:id]).update(review_params)
+    render json: { review: review }
   end
 
-  def delete
-    Review.find(params[:id]).delete
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    render json: { message: 'Your review has been deleted'}
   end
 
   private

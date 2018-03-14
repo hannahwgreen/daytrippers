@@ -1,37 +1,33 @@
 class Api::V1::TripsController < ApplicationController
+
   def index
-    @trips = Trip.all
+    render json: { trips: Trip.all }
   end
 
   def show
-    @trip = Trip.find(params[:id])
-    @reviews = @trip.reviews
-  end
-
-  def new
-    @trip = Trip.new
+    trip = Trip.find(params[:id])
+    render json: { trip: trip, review: trip.reviews }
   end
 
   def create
-    @trip = Trip.new(trip_params)
-    if @trip.save
-      render :new
+    trip = Trip.new(trip_params)
+    if trip.save
+      render json: { trip: trip }
     else
-      errors = @trip.errors.full_messages
+      render json: { errors: trip.errors.full_messages }, status: :unprocessable_entry
     end
-    flash[:alert] = errors
-  end
-
-  def edit
-    @trip = Trip.find(params[:id])
   end
 
   def update
-    @trip = Trip.find(params[:id]).update(trip_params)
+    trip = Trip.find(params[:id]).update(trip_params)
+    render json: { trip: trip }
   end
 
-  def delete
-    Trip.find(params[:id]).delete
+  def destroy
+    trip = Trip.find(params[:id])
+    trip.destroy
+    render json: { message: 'Your trip has been deleted' }
+
   end
 
 private
