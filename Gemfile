@@ -34,8 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'foreman'
   gem 'dotenv-rails'
+  gem 'foreman'  
 end
 
 group :test do
