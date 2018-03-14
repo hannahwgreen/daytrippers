@@ -9,7 +9,8 @@ feature 'user signs in', %Q{
     user = FactoryBot.create(:user)
 
     visit new_user_registration_path
-
+    
+    fill_in 'Display name', with: 'john stamos'
     fill_in 'Email', with: 'john@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
