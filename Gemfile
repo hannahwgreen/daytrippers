@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   gem 'foreman'
+  gem 'dotenv-rails'
 end
 
 group :test do
