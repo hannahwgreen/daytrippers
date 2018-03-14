@@ -2,6 +2,7 @@ require 'factory_bot'
 
 FactoryBot.define do
   factory :user do
+    display_name 'user'
     sequence(:email) {|n| "user#{n}@example.com" }
     password 'password'
     password_confirmation 'password'
