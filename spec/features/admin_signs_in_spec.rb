@@ -31,7 +31,7 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
 
     click_button 'Log in'
-    
+
     expect(page).to have_no_content('Admin')
     expect(page).to have_content('Signed in successfully')
     expect(page).to have_content('Sign Out')

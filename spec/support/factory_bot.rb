@@ -8,7 +8,6 @@ FactoryBot.define do
     password_confirmation 'password'
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'photo.jpg'), 'image/jpeg') }
   end
-  
   factory :admin, class: User do
     display_name 'user'
     sequence(:email) {|n| "user#{n}@example.com" }
@@ -17,5 +16,4 @@ FactoryBot.define do
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'photo.jpg'), 'image/jpeg') }
     admin true
   end
-
 end
