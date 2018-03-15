@@ -15,7 +15,7 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
 
     click_button 'Log in'
-    
+
     click_link 'Admin'
 
     expect(page).to have_content('Users Page:')
@@ -31,13 +31,13 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
 
     click_button 'Log in'
-    
+
     click_link 'Admin'
 
     expect(page).to have_content('Users Page:')
 
     click_link('Delete')
-    
+
     expect(page).to have_content('User account deleted')
   end
 end
