@@ -5,8 +5,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
   let!(:first_trip) { Trip.create(name: 'Liberty Bell', description: 'Cool trip.') }
   let!(:second_trip) { Trip.create(name: 'Jersey Shore', description: 'Bad trip.') }
   let!(:r1) { Review.create(user_id: u1.id, trip_id: first_trip.id, rating: 1, body: 'Great') }
-  # let!(:r2) { Review.create(user_id: user.id, trip_id: first_trip.id, rating: 4) }
-  # let!(:r3) { Review.create(user_id: user.id, trip_id: second_trip.id, rating: 3) }
+
 
   describe 'POST#create' do
     it 'creates a new review' do
