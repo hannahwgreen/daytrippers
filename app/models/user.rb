@@ -1,3 +1,4 @@
+# model (code climate)
 class User < ApplicationRecord
   mount_uploader :display_name, AvatarUploader
   # Include default devise modules. Others available are:

@@ -1,4 +1,4 @@
-#model (code climate)
+# model (code climate)
 class Trip < ApplicationRecord
   has_many :reviews
   has_many :trip_categorizations

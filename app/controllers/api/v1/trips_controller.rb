@@ -1,3 +1,4 @@
+# controller
 class Api::V1::TripsController < ApplicationController
 
   def index
@@ -30,10 +31,11 @@ class Api::V1::TripsController < ApplicationController
     render json: { message: 'Your trip has been deleted' }
   end
 
-private
+  private
 
-  def trip_params
-  params.require(:trip).permit(
-    :name, :description, :image_url)
-  end
+    def trip_params
+      params.require(:trip).permit(
+      :name, :description, :image_url
+      )
+    end
 end
