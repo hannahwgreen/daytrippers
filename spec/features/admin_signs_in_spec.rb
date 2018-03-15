@@ -8,12 +8,9 @@ feature 'admin signs in', %Q{
   scenario 'specify valid credentials' do
     user = FactoryBot.create(:admin)
     user.confirm
-
     visit new_user_session_path
-
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-
     click_button 'Log in'
 
     expect(page).to have_content('Admin')
@@ -24,12 +21,9 @@ feature 'admin signs in', %Q{
   scenario 'credentials not for an admin' do
     user = FactoryBot.create(:user)
     user.confirm
-
     visit new_user_session_path
-
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-
     click_button 'Log in'
 
     expect(page).to have_no_content('Admin')
