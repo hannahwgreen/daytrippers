@@ -44,7 +44,6 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       expect(response.content_type).to eq 'application/json'
 
       expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json).to_not be_kind_of(Array)
       expect(returned_json['trip']['name']).to eq 'Art Museum'
     end
   end
@@ -64,7 +63,6 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
       expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json).to_not be_kind_of(Array)
       expect(returned_json['trip']['name']).to eq 'Art Museum'
     end
   end
