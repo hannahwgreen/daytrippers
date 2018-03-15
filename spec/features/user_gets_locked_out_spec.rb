@@ -8,13 +8,10 @@ feature 'user signs in', %Q{
   scenario 'specify valid credentials' do
     user = FactoryBot.create(:user)
     user.confirm
-
     visit new_user_session_path
-
     5.times do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: 'wrongpassword'
-
       click_button 'Log in'
     end
 
