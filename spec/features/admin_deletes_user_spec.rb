@@ -38,7 +38,6 @@ feature 'admin signs in', %Q{
 
     click_link('Delete')
     
-    save_and_open_page
     expect(page).to have_content('User account deleted')
   end
 end
