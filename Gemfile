@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
-<<<<<<< HEAD
-ruby "2.3.3"
-=======
 ruby '2.3.3'
->>>>>>> d1f513fb512ee7ea4ca415f8fa20feb97d043577
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
