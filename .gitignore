@@ -24,3 +24,8 @@ yarn-debug.log*
 .yarn-integrity
 /coverage
 .env
+<<<<<<< HEAD
+=======
+Procfile
+/public/uploads
+>>>>>>> d1f513fb512ee7ea4ca415f8fa20feb97d043577
