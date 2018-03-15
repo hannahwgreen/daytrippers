@@ -10,7 +10,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       returned_json = JSON.parse(response.body)
 
       expect(response.status).to eq 200
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
       expect(returned_json['trips'][0]['name']).to eq 'Liberty Bell'
     end
   end
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       returned_json = JSON.parse(response.body)
 
       expect(response.status).to eq 200
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
       expect(returned_json['trip']['name']).to eq 'Jersey Shore'
     end
   end
@@ -41,7 +41,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       post(:create, params: post_json)
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
 
       expect(returned_json).to be_kind_of(Hash)
       expect(returned_json).to_not be_kind_of(Array)
@@ -62,7 +62,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       put(:update, params: post_json)
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
-      expect(response.content_type).to eq "application/json"
+      expect(response.content_type).to eq 'application/json'
       expect(returned_json).to be_kind_of(Hash)
       expect(returned_json).to_not be_kind_of(Array)
       expect(returned_json['trip']['name']).to eq 'Art Museum'
