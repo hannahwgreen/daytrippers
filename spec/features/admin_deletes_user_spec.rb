@@ -3,9 +3,9 @@ require 'rails_helper'
 feature 'admin signs in', %Q{
   As a signed up admin
   I want to sign in
-  So that I can gain access to admin functionality
+  So that I can delete a user
 } do
-  scenario 'specify valid credentials' do
+  scenario 'visits users admin page' do
     user = FactoryBot.create(:admin)
     user.confirm
 
@@ -21,10 +21,7 @@ feature 'admin signs in', %Q{
     expect(page).to have_content('Users Page:')
   end
 
-  scenario 'credentials not for an admin' do
-    regular_user = FactoryBot.create(:user)
-    regular_user.confirm
-    
+  scenario 'deletes user' do
     user = FactoryBot.create(:admin)
     user.confirm
 
@@ -36,9 +33,12 @@ feature 'admin signs in', %Q{
     click_button 'Log in'
     
     click_link 'Admin'
+
+    expect(page).to have_content('Users Page:')
+
+    click_link('Delete')
     
-    all('a', :text => 'Delete')[1].click
-        
+    save_and_open_page
     expect(page).to have_content('User account deleted')
   end
 end

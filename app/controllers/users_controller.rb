@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @user = current_user
-    if current_user.admin?
+    if current_user.try(:admin?)
       @users = User.all.order(:display_name)
     else
       flash[:notice] = "You need permission to see this page"
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if current_user.admin?
       @user.destroy
       flash[:notice] = "User account deleted"
-      redirect_to users_path 
+      render :index 
     end
   end
 end
