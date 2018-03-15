@@ -31,7 +31,6 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.content_type).to eq 'application/json'
 
       expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json).to_not be_kind_of(Array)
       expect(returned_json['review']['user_id']).to eq u1.id
     end
   end
@@ -61,7 +60,6 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
       expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json).to_not be_kind_of(Array)
       expect(returned_json['review']['rating']).to eq 2
     end
   end
