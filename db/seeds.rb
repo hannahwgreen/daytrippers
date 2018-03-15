@@ -10,3 +10,7 @@ u1 = User.create( display_name: 'Joe Schmoe', email: 'js@mailboys.com', password
 u1.confirm
 u2 = User.create( display_name: 'Jane Doe', email: 'jd@mailgirlz.gov', password: 'phillyphilly', admin: true )
 u2.confirm
+u3 = User.create( display_name: 'Ron Burgundy', email: 'ronman@mailgirlz.gov', password: 'phillyphilly', admin: true )
+u3.confirm
+u4 = User.create( display_name: 'Veronica Corningstone', email: 'bestanchor@mailgirlz.gov', password: 'phillyphilly', admin: true )
+u4.confirm

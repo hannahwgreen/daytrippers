@@ -15,14 +15,17 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
 
     click_button 'Log in'
+    
+    click_link 'Admin'
 
-    expect(page).to have_content('Admin')
-    expect(page).to have_content('Signed in successfully')
-    expect(page).to have_content('Sign Out')
+    expect(page).to have_content('Users Page:')
   end
 
   scenario 'credentials not for an admin' do
-    user = FactoryBot.create(:user)
+    regular_user = FactoryBot.create(:user)
+    regular_user.confirm
+    
+    user = FactoryBot.create(:admin)
     user.confirm
 
     visit new_user_session_path
@@ -31,9 +34,11 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
 
     click_button 'Log in'
-
-    expect(page).to have_no_content('Admin')
-    expect(page).to have_content('Signed in successfully')
-    expect(page).to have_content('Sign Out')
+    
+    click_link 'Admin'
+    
+    all('a', :text => 'Delete')[1].click
+        
+    expect(page).to have_content('User account deleted')
   end
 end
