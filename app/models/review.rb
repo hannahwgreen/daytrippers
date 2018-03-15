@@ -1,3 +1,4 @@
+# model (code climate)
 class Review < ApplicationRecord
   belongs_to :user
   belongs_to :trip
