@@ -21,7 +21,7 @@ class Api::V1::TripsController < ApplicationController
   end
 
   def update
-    trip = Trip.find(params[:id]).update(trip_params)
+    Trip.find(params[:id]).update(trip_params)
     render json: { trip: Trip.find(params[:id]) }
   end
 
@@ -33,9 +33,9 @@ class Api::V1::TripsController < ApplicationController
 
   private
 
-    def trip_params
-      params.require(:trip).permit(
+  def trip_params
+    params.require(:trip).permit(
       :name, :description, :image_url
-      )
-    end
+    )
+  end
 end

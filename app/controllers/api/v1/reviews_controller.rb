@@ -1,6 +1,5 @@
 # controller
 class Api::V1::ReviewsController < ApplicationController
-
   def create
     user = User.find(params[:user_id])
     trip = Trip.find(params[:trip_id])
