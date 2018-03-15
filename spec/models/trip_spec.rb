@@ -8,5 +8,4 @@ RSpec.describe Trip, type: :model do
   it { should_not have_valid(:description).when(nil, '') }
 
   it { should have_valid(:image_url).when('https://www.imgur.com/puppies.jpg') }
-  it { should_not have_valid(:image_url).when(nil, '') }
 end

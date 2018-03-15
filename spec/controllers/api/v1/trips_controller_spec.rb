@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Api::V1::TripsController, type: :controller do
-  let!(:first_trip) { Trip.create(name: "Liberty Bell") }
-  let!(:second_trip) { Trip.create(name: "Jersey Shore") }
+  let!(:first_trip) { Trip.create(name: "Liberty Bell", description: "Cool trip." ) }
+  let!(:second_trip) { Trip.create(name: "Jersey Shore", description: "Bad trip.") }
 
   describe "GET#index" do
     it "should return a list of all trips" do
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
   describe "POST#create" do
     it "creates a new trip" do
-      post_json = { trip: { name: "Art Museum" } }
+      post_json = { trip: { name: "Art Museum", description: "Cool trip." } }
 
       prev_count = Trip.count
       post(:create, params: post_json)
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     end
 
     it "returns the json of the newly posted trip" do
-      post_json = { trip: { name: "Art Museum" } }
+      post_json = { trip: { name: "Art Museum", description: "Cool trip." } }
 
       post(:create, params: post_json)
       returned_json = JSON.parse(response.body)

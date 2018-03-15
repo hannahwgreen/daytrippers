@@ -1,11 +1,12 @@
 class Api::V1::ReviewsController < ApplicationController
 
-  def show
-    render json: { review: Review.find(params[:id]) }
-  end
-
   def create
+    user = User.find(params[:user_id])
+    trip = Trip.find(params[:trip_id])
     review = Review.new(review_params)
+    review.user = user
+    review.trip = trip
+
     if review.save
       render json: { review: review }
     else
@@ -14,8 +15,10 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def update
+    user = User.find(params[:user_id])
+    trip = Trip.find(params[:trip_id])
     review = Review.find(params[:id]).update(review_params)
-    render json: { review: review }
+    render json: { review: Review.find(params[:id]) }
   end
 
   def destroy
