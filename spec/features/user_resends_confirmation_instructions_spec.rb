@@ -17,7 +17,7 @@ feature 'user signs in', %Q{
     click_link "Didn't receive confirmation instructions?"
     fill_in 'Email', with: user.email
     click_button 'Resend confirmation instructions'
-    
+
     expect(page).to have_content('You will receive an email with instructions for how to confirm your email address in a few minutes.')
   end
 end
