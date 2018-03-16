@@ -3,7 +3,7 @@ class Trip < ApplicationRecord
   has_many :reviews
   has_many :trip_categorizations
   has_many :categories, through: :trip_categorizations
-  belongs_to :users, optional: true
+  belongs_to :user
 
   validates :name, presence: true
   validates :user_id, presence: true

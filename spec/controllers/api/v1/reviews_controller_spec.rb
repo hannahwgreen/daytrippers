@@ -10,8 +10,12 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     it 'creates a new review' do
 
       post_json = {
-        review: { rating: 4, body: 'Great' },
-        user_id: u1.id, trip_id: first_trip.id
+        review: {
+          rating: 4,
+          body: 'Great'
+        },
+        user_id: u1.id,
+        trip_id: first_trip.id
       }
 
       prev_count = Review.count
@@ -21,8 +25,12 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
 
     it 'returns the json of the newly posted trip' do
       post_json = {
-        review: { rating: 4, body: 'Great' },
-        user_id: u1.id, trip_id: first_trip.id
+        review: {
+          rating: 4,
+          body: 'Great'
+        },
+        user_id: u1.id,
+        trip_id: first_trip.id
       }
 
       post(:create, params: post_json)
@@ -39,8 +47,12 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     it 'updates an existing trip' do
       post_json = {
         id: r1.id,
-        review: { rating: 2, body: 'Bad' },
-        user_id: u1.id, trip_id: first_trip.id
+        review: {
+          rating: 2,
+          body: 'Bad'
+        },
+        user_id: u1.id,
+        trip_id: first_trip.id
       }
 
       prev_count = Review.count
@@ -51,8 +63,12 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     it 'returns updated json of an existing trip' do
       post_json = {
         id: r1.id,
-        review: { rating: 2, body: 'Bad' },
-        user_id: u1.id, trip_id: first_trip.id
+        review: {
+          rating: 2,
+          body: 'Bad'
+        },
+        user_id: u1.id,
+        trip_id: first_trip.id
       }
 
       put(:update, params: post_json)

@@ -1,5 +1,6 @@
 # controller
 class Api::V1::TripsController < ApplicationController
+skip_before_action :verify_authenticity_token
 
   def index
     render json: { trips: Trip.all }
@@ -12,8 +13,8 @@ class Api::V1::TripsController < ApplicationController
 
   def create
     trip = Trip.new(trip_params)
-    trip.user_id = current_user.id
-    
+    trip.user = User.find(params['user_id'])
+
     if trip.save
       render json: { trip: trip }
     else

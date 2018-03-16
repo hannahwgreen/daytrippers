@@ -32,8 +32,13 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
   describe 'POST#create' do
     it 'creates a new trip' do
-      u1 = current_user
-      post_json = { trip: { name: 'Art Museum', description: 'Cool trip.', user_id: u1.id, location_id: 1} }
+      post_json = {
+        trip: {
+          name: 'Art Museum',
+          description: 'Cool trip.'
+        },
+        user_id: u1.id
+      }
 
       prev_count = Trip.count
       post(:create, params: post_json)
@@ -41,7 +46,14 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     end
 
     it 'returns the json of the newly posted trip' do
-      post_json = { trip: { name: 'Art Museum', location_id: 3, description: 'Cool trip.' } }
+      post_json = {
+        trip: {
+          name: 'Art Museum',
+          location_id: 3,
+          description: 'Cool trip.'
+        },
+        user_id: u1.id
+      }
 
       post(:create, params: post_json)
       returned_json = JSON.parse(response.body)
@@ -55,7 +67,15 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
   describe 'PUT#update' do
     it 'updates an existing trip' do
-      post_json = { id: second_trip.id, trip: { name: 'Art Museum', user_id: u1.id, location_id: 3, description: 'Cool trip.' } }
+      post_json = {
+        id: second_trip.id,
+        trip: {
+          name: 'Art Museum',
+          user_id: u1.id,
+          location_id: 3,
+          description: 'Cool trip.'
+          }
+        }
 
       prev_count = Trip.count
       put(:update, params: post_json)
@@ -63,7 +83,15 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     end
 
     it 'returns updated json of an existing trip' do
-      post_json = { id: second_trip.id, trip: { name: 'Art Museum', user_id: u1.id, location_id: 3, description: 'Cool trip.' } }
+      post_json = {
+        id: second_trip.id,
+        trip: {
+          name: 'Art Museum',
+          user_id: u1.id,
+          location_id: 3,
+          description: 'Cool trip.'
+          }
+        }
 
       put(:update, params: post_json)
       returned_json = JSON.parse(response.body)
