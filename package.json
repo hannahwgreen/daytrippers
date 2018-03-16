@@ -30,7 +30,7 @@
     "test": "node_modules/.bin/karma start karma.conf.js"
   },
   "engines": {
-    "node": ">=6.0.0",
+    "node": ">=6.11.5",
     "yarn": ">=0.25.2"
   }
 }
