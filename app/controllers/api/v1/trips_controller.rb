@@ -12,7 +12,8 @@ class Api::V1::TripsController < ApplicationController
 
   def create
     trip = Trip.new(trip_params)
-
+    trip.user_id = current_user.id
+    
     if trip.save
       render json: { trip: trip }
     else

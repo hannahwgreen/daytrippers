@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ReviewsController, type: :controller do
-  let!(:u1) { User.create(email: 'joe@joe.com', password: 'phillyphilly', display_name: 'joe') }
-  let!(:first_trip) { Trip.create(name: 'Liberty Bell', description: 'Cool trip.') }
-  let!(:second_trip) { Trip.create(name: 'Jersey Shore', description: 'Bad trip.') }
-  let!(:r1) { Review.create(user_id: u1.id, trip_id: first_trip.id, rating: 1, body: 'Great') }
-
+  let!(:u1) { User.create!(email: 'joe1@joe.com', password: 'phillyphilly', display_name: 'joe') }
+  let!(:first_trip) { Trip.create!(name: 'Liberty Bell', user_id: u1.id, location_id: 3, description: 'Cool trip.') }
+  let!(:second_trip) { Trip.create!(name: 'Jersey Shore', user_id: u1.id, location_id: 3, description: 'Bad trip.') }
+  let!(:r1) { Review.create!(user_id: u1.id, trip_id: first_trip.id, rating: 1, body: 'Great') }
 
   describe 'POST#create' do
     it 'creates a new review' do
+
       post_json = {
         review: { rating: 4, body: 'Great' },
         user_id: u1.id, trip_id: first_trip.id

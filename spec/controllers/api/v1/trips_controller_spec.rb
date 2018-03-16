@@ -1,14 +1,18 @@
 require 'rails_helper'
 
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+end
+
 RSpec.describe Api::V1::TripsController, type: :controller do
-  let!(:first_trip) { Trip.create(name: 'Liberty Bell', description: 'Cool trip.') }
-  let!(:second_trip) { Trip.create(name: 'Jersey Shore', description: 'Bad trip.') }
+  let!(:u1) { User.create(email: 'joe@joe.com', password: 'phillyphilly', display_name: 'joe') }
+  let!(:first_trip) { Trip.create(name: 'Liberty Bell', user_id: u1.id, location_id: 3, description: 'Cool trip.') }
+  let!(:second_trip) { Trip.create(name: 'Jersey Shore', user_id: u1.id, location_id: 3, description: 'Bad trip.') }
 
   describe 'GET#index' do
     it 'should return a list of all trips' do
       get :index
       returned_json = JSON.parse(response.body)
-
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
       expect(returned_json['trips'][0]['name']).to eq 'Liberty Bell'
@@ -28,7 +32,8 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
   describe 'POST#create' do
     it 'creates a new trip' do
-      post_json = { trip: { name: 'Art Museum', description: 'Cool trip.' } }
+      u1 = current_user
+      post_json = { trip: { name: 'Art Museum', description: 'Cool trip.', user_id: u1.id, location_id: 1} }
 
       prev_count = Trip.count
       post(:create, params: post_json)
@@ -36,7 +41,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     end
 
     it 'returns the json of the newly posted trip' do
-      post_json = { trip: { name: 'Art Museum', description: 'Cool trip.' } }
+      post_json = { trip: { name: 'Art Museum', location_id: 3, description: 'Cool trip.' } }
 
       post(:create, params: post_json)
       returned_json = JSON.parse(response.body)
@@ -50,14 +55,16 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
   describe 'PUT#update' do
     it 'updates an existing trip' do
-      post_json = { id: second_trip.id, trip: { name: 'Art Museum' } }
+      post_json = { id: second_trip.id, trip: { name: 'Art Museum', user_id: u1.id, location_id: 3, description: 'Cool trip.' } }
 
       prev_count = Trip.count
       put(:update, params: post_json)
       expect(Trip.count).to eq(prev_count)
     end
+
     it 'returns updated json of an existing trip' do
-      post_json = { id: second_trip.id, trip: { name: 'Art Museum' } }
+      post_json = { id: second_trip.id, trip: { name: 'Art Museum', user_id: u1.id, location_id: 3, description: 'Cool trip.' } }
+
       put(:update, params: post_json)
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
