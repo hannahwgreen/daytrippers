@@ -8,18 +8,15 @@ feature 'user signs in', %Q{
   scenario 'specify valid credentials' do
     user = FactoryBot.create(:user)
     user.confirm
-
     visit new_user_session_path
-
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-
     click_button 'Log in'
-
     click_link('edit-profile')
     fill_in 'Display name', with: 'bob saget'
     fill_in 'Password confirmation', with: 'password'
-    click_button 'Update'    
+    click_button 'Update'
+
     expect(page).to have_content('bob saget')   
   end
   scenario 'specify invalid name' do
@@ -33,6 +30,7 @@ feature 'user signs in', %Q{
     fill_in 'Display name', with: ''
     fill_in 'Password confirmation', with: 'password'
     click_button 'Update'
+    
     expect(page).to have_content("Display name can't be blank")
   end
 end
