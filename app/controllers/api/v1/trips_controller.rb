@@ -2,7 +2,10 @@
 class Api::V1::TripsController < ApplicationController
 
   def index
-    render json: { trips: Trip.all }
+    trips = Trip.all
+    categorizations = TripCategorization.all
+    categories = Category.all
+    render json: { trips: trips, categories: categories, categorizations: categorizations }
   end
 
   def show
