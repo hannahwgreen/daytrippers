@@ -17,6 +17,7 @@ class HomeContainer extends Component {
     } else {
       this.setState({selectedCategoryId: id})
     }
+    console.log(this.state.selectedCategoryId);
   }
   
   render() {
@@ -24,9 +25,10 @@ class HomeContainer extends Component {
     return(
       <div>
         <CategoriesContainer 
-          onChange={this.handleCategoryChange}
-          selectedCategoryId={this.state.selectedCategoryId} />
-        <TripsContainer />
+          onCategoryChange={this.handleCategoryChange}
+          selectedCategoryId={this.state.selectedCategoryId} />           
+        <TripsContainer
+        selectedCategoryId={this.state.selectedCategoryId} />
       </div>
     )
   }

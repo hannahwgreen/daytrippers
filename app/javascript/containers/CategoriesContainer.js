@@ -10,7 +10,7 @@ class CategoriesContainer extends Component {
   }
   
   componentDidMount() {
-    fetch('/api/v1/trips')
+    fetch('/api/v1/categories')
     .then(response => {
       if (response.ok) {
         return response;
@@ -22,23 +22,26 @@ class CategoriesContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ categories: body.categories });
+      this.setState({ categories: body });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
+    
   
   render() {
     let className;
+    
     let categories = this.state.categories.map(category => {
       
       if(category.id === this.state.selectedCategoryId){
-        className = "active"
+        className = "active"        
       } else {
         className = ""
       }
       
       let handleClick = () => {
-        this.props.onChange(category.id)
+        this.props.onCategoryChange(category.id)
+        console.log(category.id);
       }
       
       return(

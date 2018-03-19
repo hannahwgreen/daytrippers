@@ -1,21 +1,19 @@
 # controller
 class Api::V1::TripsController < ApplicationController
+protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    trips = Trip.all
-    categorizations = TripCategorization.all
-    categories = Category.all
-    render json: { trips: trips, categories: categories, categorizations: categorizations }
+    trips = Trip.order(:name)
+    render json: trips
   end
 
   def show
     trip = Trip.find(params[:id])
-    render json: { trip: trip, review: trip.reviews }
+    render json: { trip: trip, reviews: trip.reviews }
   end
-
+  
   def create
-    trip = Trip.new(trip_params)
-
+    trip = Trip.new(name: params[:name], description: params[:description])
     if trip.save
       render json: { trip: trip }
     else
@@ -37,6 +35,6 @@ class Api::V1::TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :description, :image_url)
+    params.require(:trip).permit(:name, :description)
   end
 end
