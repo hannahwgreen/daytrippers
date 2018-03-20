@@ -34,8 +34,8 @@ skip_before_action :verify_authenticity_token
       flash[:notice] = 'Trip deleted'
       redirect_to users_path
     else
-    render json: { message: 'Your trip has been deleted' }
-  end
+      render json: { message: 'Your trip has been deleted' }
+    end
   end
 
   private

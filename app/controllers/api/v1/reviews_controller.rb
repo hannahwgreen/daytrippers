@@ -28,7 +28,7 @@ class Api::V1::ReviewsController < ApplicationController
       flash[:notice] = 'Review deleted'
       redirect_to users_path
     else
-    render json: { message: 'Your review has been deleted' }
+      render json: { message: 'Your review has been deleted' }
     end
   end
 
