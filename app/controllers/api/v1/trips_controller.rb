@@ -12,11 +12,16 @@ skip_before_action :verify_authenticity_token
     trip = Trip.find(params[:id])
     render json: { trip: trip, reviews: trip.reviews }
   end
-  
+
   def create
     user = current_user
-    trip = Trip.new(name: params[:name], description: params[:description])
+    trip = Trip.new(trip_params)
     trip.user = current_user
+    if current_user
+      trip.user = current_user
+    elsif params[:user_id]
+      trip.user = User.find(params[:user_id])
+    end
     if trip.save
       render json: { trip: trip }
     else

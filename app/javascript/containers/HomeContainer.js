@@ -6,7 +6,7 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCategoryId: null
+      selectedCategoryId: null,
     }
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
   }
@@ -17,7 +17,6 @@ class HomeContainer extends Component {
     } else {
       this.setState({selectedCategoryId: id})
     }
-    console.log(this.state.selectedCategoryId);
   }
   
   render() {
@@ -28,9 +27,9 @@ class HomeContainer extends Component {
         <CategoriesContainer 
           onCategoryChange={this.handleCategoryChange}
           selectedCategoryId={this.state.selectedCategoryId} />       
-          <TripsContainer
-            selectedCategoryId={this.state.selectedCategoryId} />
-          </div>
+        <TripsContainer
+          selectedCategoryId={this.state.selectedCategoryId} />
+        </div>
         )
       }
     }

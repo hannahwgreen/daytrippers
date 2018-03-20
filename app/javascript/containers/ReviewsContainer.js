@@ -28,7 +28,6 @@ class ReviewsContainer extends Component {
       } else {
         let errorMessage = `${response.status} (${response.statusText})`,
         error = new Error(errorMessage);
-        debugger
         throw(error);
       }
     })
