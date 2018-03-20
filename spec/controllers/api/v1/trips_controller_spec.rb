@@ -39,7 +39,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
         },
         user_id: u1.id
       }
-      
+
       prev_count = Trip.count
       post(:create, params: post_json)
       expect(Trip.count).to eq(prev_count + 1)
@@ -76,7 +76,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
           description: 'Cool trip.'
         }
       }
-
+      
       prev_count = Trip.count
       put(:update, params: post_json)
       expect(Trip.count).to eq(prev_count)

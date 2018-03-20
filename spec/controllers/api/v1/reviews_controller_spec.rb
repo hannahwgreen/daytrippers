@@ -8,6 +8,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
 
   describe 'POST#create' do
     it 'creates a new review' do
+
       post_json = {
         review: {
           rating: 4,

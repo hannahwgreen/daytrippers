@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+
   root 'trips#index'
-  devise_for :users
-  resources :users, only: [:index, :destroy]
+  devise_for :users, :path_prefix => 'my'
+  resources :users, only: [:index, :edit, :update, :destroy]
   
   resources :trips
     

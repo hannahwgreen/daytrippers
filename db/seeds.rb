@@ -57,4 +57,3 @@ r3 = Review.create(user_id: u3.id, body: 'Nullam aliquet vulputate urna, at dapi
 r4 = Review.create(user_id: u1.id, body: 'Nullam ultrices efficitur lacus.', rating: 4, trip_id: t2.id)
 r5 = Review.create(user_id: u2.id, body: 'Praesent in malesuada dolor, eu euismod sem.', rating: 3, trip_id: t2.id)
 r6 = Review.create(user_id: u3.id, body: 'Ut vel risus in turpis lobortis placerat ac vel quam.', rating: 5, trip_id: t2.id)
-

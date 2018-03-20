@@ -1,6 +1,23 @@
-<h1>Users Page:</h1>
+<h1>Admin Page</h1>
+
+<h2>Users:</h2>
 <ul>
   <% @users.each do |user| %>
-  <li><%= user.display_name %> <%= link_to "Delete", user, :method => 'delete' %></li>
+  <li><%= user.display_name %> <%= link_to 'Delete', user, method: :delete %>  <%= link_to 'Edit', edit_user_path(user.id)%></li>
   <% end %>
 </ul>
+
+<h2>Trips:</h2>
+  <ul>
+    <%if @trips != nil%>
+    <% @trips.each do |trip| %>
+    <li><%=trip.name%> <%= link_to 'Delete', api_v1_trip_url(trip.id), method: :delete %>  <%= link_to 'Edit', api_v1_trip_url(trip.id), method: :edit %></li>
+    <ul>
+      <%if trip.reviews != nil%>
+      <%trip.reviews.each do |review|%>
+      <li><%=review.body%>  <%= link_to 'Delete', api_v1_trip_review_url(trip.id, review.id), method: :delete %>  <%= link_to 'Edit', api_v1_trip_review_url(trip.id, review.id), method: :edit %> </li>
+      <%end%>
+      <%end%>
+      <%end%>
+    </ul>
+    <%end%>

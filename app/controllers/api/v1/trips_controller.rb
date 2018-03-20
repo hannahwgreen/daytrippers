@@ -15,12 +15,14 @@ class Api::V1::TripsController < ApplicationController
 
   def create
     trip = Trip.new(trip_params)
+
     trip.user = current_user
     if current_user
       trip.user = current_user
     elsif params[:user_id]
       trip.user = User.find(params[:user_id])
     end
+
     if trip.save
       render json: { trip: trip }
     else
@@ -36,7 +38,12 @@ class Api::V1::TripsController < ApplicationController
   def destroy
     trip = Trip.find(params[:id])
     trip.destroy
-    render json: { message: 'Your trip has been deleted' }
+    if current_user.admin?
+      flash[:notice] = 'Trip deleted'
+      redirect_to users_path
+    else
+      render json: { message: 'Your trip has been deleted' }
+    end
   end
 
   private
