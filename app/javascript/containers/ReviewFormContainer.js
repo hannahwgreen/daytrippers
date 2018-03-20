@@ -87,6 +87,7 @@ class ReviewFormContainer extends Component {
     
     return(      
       <form className="new-review-form callout" onSubmit={this.handleSubmit}>
+        <h3>Add review for this trip</h3>
         {errorDiv}
         <ReviewTextAreaField
           content={this.state.body}
@@ -101,7 +102,7 @@ class ReviewFormContainer extends Component {
           handlerFunction={this.handleRatingChange}
         />
         <div className="button-group">
-          <input className="button" type="submit" value="Submit" />
+          <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
         </div>
       </form>
     )

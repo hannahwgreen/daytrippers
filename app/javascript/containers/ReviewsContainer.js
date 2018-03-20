@@ -73,8 +73,10 @@ class ReviewsContainer extends Component {
     })
     
     return(
-      <div>
-        {reviews}
+      <div className="container">
+        <ul className="list-unstyled">
+          {reviews}
+        </ul>
         <ReviewFormContainer
           addNewReview={this.addNewReview}
           id={this.props.id} />

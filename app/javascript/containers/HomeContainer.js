@@ -23,15 +23,16 @@ class HomeContainer extends Component {
   render() {
     
     return(
-      <div>
+      <div className="container mt-5">
+        <h3>Trips</h3>
         <CategoriesContainer 
           onCategoryChange={this.handleCategoryChange}
-          selectedCategoryId={this.state.selectedCategoryId} />           
-        <TripsContainer
-        selectedCategoryId={this.state.selectedCategoryId} />
-      </div>
-    )
-  }
-}
-
-export default HomeContainer;
+          selectedCategoryId={this.state.selectedCategoryId} />       
+          <TripsContainer
+            selectedCategoryId={this.state.selectedCategoryId} />
+          </div>
+        )
+      }
+    }
+    
+    export default HomeContainer;

@@ -4,39 +4,54 @@
   <title>Daytrippers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>  
-  <%= javascript_include_tag "vendor/modernizr" %>  
   <%= javascript_pack_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Daytrippers</a></h1>
-      </li>
-    </ul>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <%= link_to 'Daytrippers', root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user.try(:admin?) %>
-          <li><%= link_to 'Admin', users_path %></li>
-        <% end %>
-        <%- if current_user -%>
-          <li><%= link_to image_tag(@user.avatar.thumb.url), edit_user_registration_path, id: "edit-profile" %></li> 
-          <li><%= @user.display_name %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%- if current_user -%>            
+            <%= @user.display_name %>
+            <%- else -%>
+            Account
+            <%- end -%>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%- if current_user -%>
+            <%= link_to 'Edit Profile', edit_user_registration_path, class: "dropdown-item", id: "edit-profile" %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%- else -%>
+            <%= link_to 'Sign Up', new_user_registration_path, class: "dropdown-item" %>
+            <%= link_to 'Sign In', new_user_session_path, class: "dropdown-item" %>
+            <%- end -%>
+            <%- if current_user.try(:admin?) %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Admin', users_path, class: "dropdown-item" %>
+            <% end %>
+          </div>
+        </li>
       </ul>
-    </section>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
   </nav>
   
+  
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
+  <div class="flash flash-<%= key %>">
+    <%= value %>
+  </div>
   <%- end -%>
   
   <%= yield %>

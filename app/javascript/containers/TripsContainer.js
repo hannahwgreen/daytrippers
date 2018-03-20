@@ -34,7 +34,7 @@ class TripsContainer extends Component {
         });
       }
       if (selectedCategory == null) {
-        return (
+        return (        
           <TripTile 
             key={trip.id}
             id={trip.id}
@@ -55,9 +55,8 @@ class TripsContainer extends Component {
     })
     
     return (
-      <div>
-        <h1>Trips</h1>
-        <Link to={`/trips/new`}><h5>Add trip</h5></Link>
+      <div>        
+        <Link to={`/trips/new`}><button type="button" className="btn btn-primary my-3">Add trip</button></Link>
         {trips}
       </div>
     )

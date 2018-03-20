@@ -107,7 +107,9 @@ class TripFormContainer extends Component {
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
     return(
-      <form className="new-article-form callout" onSubmit={this.handleSubmit}>
+      <div className="container mt-5">
+      <h3>Add a trip</h3>
+      <form onSubmit={this.handleSubmit}>
         {errorDiv}
         <TripTextField
           content={this.state.name}
@@ -123,10 +125,11 @@ class TripFormContainer extends Component {
         />
         
         <div className="button-group">
-          <button className="button" onClick={this.handleClear}>Clear</button>
-          <input className="button" type="submit" value="Submit" />
+          <button className="btn btn-light mr-3" onClick={this.handleClear}>Clear</button>
+          <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
         </div>
       </form>
+    </div>
     )
   }
 }

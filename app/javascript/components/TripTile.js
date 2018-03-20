@@ -3,9 +3,12 @@ import { Link } from 'react-router';
 
 const TripTile = (props) => {
   return(
-    <div>
-        <h2><Link to={`/trips/${props.id}`}>{props.name}</Link></h2>
-        <p>{props.description}</p>
+    <div className="card mb-3">
+      <div className="card-body">
+        <h5 className="card-title">{props.name}</h5>
+        <p className="card-text">{props.description}</p>
+        <Link to={`/trips/${props.id}`}>Learn more</Link>
+      </div>
     </div>
   )
 }

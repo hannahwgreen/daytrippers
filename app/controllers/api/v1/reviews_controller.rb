@@ -3,7 +3,7 @@ class Api::V1::ReviewsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
   
   def index
-    reviews = Review.where(trip_id: params[:trip_id])
+    reviews = Review.where(trip_id: params[:trip_id]).order('updated_at desc')
     render json: reviews
   end
   

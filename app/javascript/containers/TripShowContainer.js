@@ -39,15 +39,15 @@ class TripShowContainer extends Component {
     
     return(
       <div>
-      <TripShow
-        key={trip_id}
-        id={trip_id}
-        name={trip_name}
-        description={trip_description}
-      />
-      <ReviewsContainer
-        id={this.props.params.id}
-      />
+        <TripShow
+          key={trip_id}
+          id={trip_id}
+          name={trip_name}
+          description={trip_description}
+        />
+        <ReviewsContainer
+          id={this.props.params.id}
+        />
       </div>
     )
   }

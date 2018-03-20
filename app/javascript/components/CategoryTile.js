@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 
 const CategoryTile = (props) => {
   return(
-    <li onClick={props.handleClick} className={props.className}>{props.name}</li>
+    <li className="nav-item">
+      <a onClick={props.handleClick} className={props.className}>{props.name}</a>
+    </li>
   )
 }
 

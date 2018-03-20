@@ -2,14 +2,16 @@ import React from 'react';
 
 const TripTextAreaField = (props) => {
   return (
-    <label>{props.label}
+    <div className="form-group">
+    <label>{props.label}</label>
       <textarea
         name={props.name}
         type='text'
+        className='form-control'
         value={props.content}
         onChange={props.handlerFunction}
-      />
-    </label>
+      />   
+    </div> 
   );
 }
 

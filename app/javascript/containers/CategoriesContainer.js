@@ -27,16 +27,14 @@ class CategoriesContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
     
-  
   render() {
     let className;
-    
     let categories = this.state.categories.map(category => {
       
-      if(category.id === this.state.selectedCategoryId){
-        className = "active"        
+      if(category.id === this.props.selectedCategoryId){
+        className = "nav-link active"        
       } else {
-        className = ""
+        className = "nav-link"
       }
       
       let handleClick = () => {
@@ -57,8 +55,7 @@ class CategoriesContainer extends Component {
     
     return(
       <div>
-        <h1>Categories</h1>
-        <ul>
+        <ul className="nav nav-pills nav-fill bg-light text-dark">
           {categories}
         </ul>
       </div>
