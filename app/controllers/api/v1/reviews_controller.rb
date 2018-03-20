@@ -24,7 +24,12 @@ class Api::V1::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    render json: { message: 'Your review has been deleted' }
+    if current_user.admin?
+      flash[:notice] = 'Review deleted'
+      redirect_to users_path
+    else
+      render json: { message: 'Your review has been deleted' }
+    end
   end
 
   private
