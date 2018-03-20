@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'trips#index'
   devise_for :users
-  
-  resources :trips
   resources :users, only: [:index, :destroy]
   
+  resources :trips
+    
   namespace :admin do
     resources :trips
     resources :users

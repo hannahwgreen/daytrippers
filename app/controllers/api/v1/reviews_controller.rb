@@ -1,18 +1,23 @@
 # controller
 class Api::V1::ReviewsController < ApplicationController
-  def index
+  protect_from_forgery unless: -> { request.format.json? }
   
-  def create
-    user = User.find(params[:user_id])
+  def index
+    reviews = Review.where(trip_id: params[:trip_id])
+    render json: reviews
+  end
+  
+  def create    
+    user = current_user
     trip = Trip.find(params[:trip_id])
-    review = Review.new(review_params)
-    review.user = user
-    review.trip = trip
+    review = Review.new(body: params[:body], rating: params[:rating])
+    review.user = current_user
+    review.trip_id = trip.id    
 
     if review.save
       render json: { review: review }
     else
-      render json: { errors: review.errors.full_messages }
+      render json: { errors: review.errors }
     end
   end
 

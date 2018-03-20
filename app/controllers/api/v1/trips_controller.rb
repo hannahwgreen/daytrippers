@@ -1,6 +1,7 @@
 # controller
 class Api::V1::TripsController < ApplicationController
 protect_from_forgery unless: -> { request.format.json? }
+skip_before_action :verify_authenticity_token
 
   def index
     trips = Trip.order(:name)
@@ -13,7 +14,9 @@ protect_from_forgery unless: -> { request.format.json? }
   end
   
   def create
+    user = current_user
     trip = Trip.new(name: params[:name], description: params[:description])
+    trip.user = current_user
     if trip.save
       render json: { trip: trip }
     else

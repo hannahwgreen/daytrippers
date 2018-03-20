@@ -6,9 +6,6 @@ const TripShow = (props) => {
     <div className="trip-show">
       <h2>{props.name}</h2>
       <p>{props.description}</p>
-      <a href="/" className="button">
-        Back
-      </a>
     </div>
   )
 }

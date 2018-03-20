@@ -51,10 +51,10 @@ tc13 = TripCategorization.create(trip_id: t2.id, category_id: c2.id)
 tc14 = TripCategorization.create(trip_id: t4.id, category_id: c2.id)
 
 r1 = Review.create(user_id: u1.id, body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', rating: 4, trip_id: t1.id)
-r2 = Review.create(user_id: u2.id, body: 'Vestibulum molestie elementum lacus, sed rutrum justo ultrices eget.', rating: 8, trip_id: t1.id)
+r2 = Review.create(user_id: u2.id, body: 'Vestibulum molestie elementum lacus, sed rutrum justo ultrices eget.', rating: 3, trip_id: t1.id)
 r3 = Review.create(user_id: u3.id, body: 'Nullam aliquet vulputate urna, at dapibus erat porta sit amet.', rating: 5, trip_id: t1.id)
 
 r4 = Review.create(user_id: u1.id, body: 'Nullam ultrices efficitur lacus.', rating: 4, trip_id: t2.id)
-r5 = Review.create(user_id: u2.id, body: 'Praesent in malesuada dolor, eu euismod sem.', rating: 8, trip_id: t2.id)
+r5 = Review.create(user_id: u2.id, body: 'Praesent in malesuada dolor, eu euismod sem.', rating: 3, trip_id: t2.id)
 r6 = Review.create(user_id: u3.id, body: 'Ut vel risus in turpis lobortis placerat ac vel quam.', rating: 5, trip_id: t2.id)
 

@@ -19,8 +19,7 @@ class TripFormContainer extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addNewTrip = this.addNewTrip.bind(this);
   }
-  
-  
+    
   addNewTrip(submission) {
     fetch('/api/v1/trips', {
       credentials: 'same-origin',
