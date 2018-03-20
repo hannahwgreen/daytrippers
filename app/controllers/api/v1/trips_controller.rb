@@ -30,7 +30,12 @@ skip_before_action :verify_authenticity_token
   def destroy
     trip = Trip.find(params[:id])
     trip.destroy
+    if current_user.admin?
+      flash[:notice] = 'Trip deleted'
+      redirect_to users_path
+    else
     render json: { message: 'Your trip has been deleted' }
+  end
   end
 
   private
