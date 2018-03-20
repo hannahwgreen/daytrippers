@@ -10,10 +10,10 @@ feature 'avatar' do
     fill_in 'Password confirmation', with: 'boomstick!3vilisd3ad'
     attach_file :user_avatar, "#{Rails.root}/spec/support/images/photo.jpg"
     click_button 'Sign up'
-
-  expect(page).to have_content('A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.')
-  
+    
+    expect(page).to have_content('A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.')
   end
+
   scenario 'user uploads an avatar with an unsupported file type' do
     visit root_path
     click_link 'Sign Up'
