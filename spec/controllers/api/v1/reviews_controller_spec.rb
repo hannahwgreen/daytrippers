@@ -23,7 +23,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(Review.count).to eq(prev_count + 1)
     end
 
-    it 'returns the json of the newly posted trip' do
+    it 'returns the json of the newly posted review' do
       post_json = {
         review: {
           rating: 4,

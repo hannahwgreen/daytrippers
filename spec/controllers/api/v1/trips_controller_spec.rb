@@ -15,7 +15,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
-      expect(returned_json['trips'][0]['name']).to eq 'Liberty Bell'
+      expect(returned_json['trips'][0]['name']).to eq 'Jersey Shore'
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     it 'should give more information about selected trip' do
       get :show, params: { id: second_trip.id }
       returned_json = JSON.parse(response.body)
-
+      
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
       expect(returned_json['trip']['name']).to eq 'Jersey Shore'
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
-
+      
       expect(returned_json).to be_kind_of(Hash)
       expect(returned_json['trip']['name']).to eq 'Art Museum'
     end
@@ -74,9 +74,9 @@ RSpec.describe Api::V1::TripsController, type: :controller do
           user_id: u1.id,
           location_id: 3,
           description: 'Cool trip.'
-          }
         }
-
+      }
+      
       prev_count = Trip.count
       put(:update, params: post_json)
       expect(Trip.count).to eq(prev_count)
@@ -90,8 +90,8 @@ RSpec.describe Api::V1::TripsController, type: :controller do
           user_id: u1.id,
           location_id: 3,
           description: 'Cool trip.'
-          }
         }
+      }
 
       put(:update, params: post_json)
       returned_json = JSON.parse(response.body)

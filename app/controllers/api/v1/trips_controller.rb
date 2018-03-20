@@ -1,19 +1,27 @@
 # controller
 class Api::V1::TripsController < ApplicationController
-skip_before_action :verify_authenticity_token
+  protect_from_forgery unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token
 
   def index
-    render json: { trips: Trip.all }
+    trips = Trip.order(:name)
+    render json: trips
   end
 
   def show
     trip = Trip.find(params[:id])
-    render json: { trip: trip, review: trip.reviews }
+    render json: { trip: trip, reviews: trip.reviews }
   end
 
   def create
     trip = Trip.new(trip_params)
-    trip.user = User.find(params['user_id'])
+
+    trip.user = current_user
+    if current_user
+      trip.user = current_user
+    elsif params[:user_id]
+      trip.user = User.find(params[:user_id])
+    end
 
     if trip.save
       render json: { trip: trip }
@@ -41,6 +49,6 @@ skip_before_action :verify_authenticity_token
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :description, :image_url)
+    params.require(:trip).permit(:name, :description)
   end
 end
