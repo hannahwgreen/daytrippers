@@ -8,7 +8,6 @@ feature 'user searches', %Q{
   let!(:user) { FactoryBot.create(:user) }
   let!(:trip) { FactoryBot.create(:trip, user: user) }
   scenario 'search for existing trip' do
-
     visit root_path
     fill_in 'search_keywords', with: 'New York'
     click_button 'Search'
