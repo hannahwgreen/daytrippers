@@ -11,7 +11,7 @@
   <%if @trips != nil%>
     <ul class="list-unstyled"> 
     <% @trips.each do |trip| %>
-      <li><%=trip.name%> <%= link_to 'Delete', trip, method: :delete %> <%= link_to 'Edit', edit_trip_path(trip.id) %></li>  
+      <li><%=trip.name%> <%= link_to 'Delete', trip, method: :delete %> <%= link_to 'Edit', edit_trip_path(trip.id), id: trip.name %></li>  
       <%if trip.reviews != nil%>
         <ul>
         <%trip.reviews.each do |review|%>          
