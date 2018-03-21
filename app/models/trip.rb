@@ -8,4 +8,8 @@ class Trip < ApplicationRecord
   validates :name, presence: true
   validates :user_id, presence: true
   validates :description, presence: true
+
+  def self.keyword_search(keywords)
+    where('name ILIKE ? OR description ILIKE ?', "%#{keywords}%", "%#{keywords}%")
+  end
 end

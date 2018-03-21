@@ -8,12 +8,10 @@ class TripsContainer extends Component {
     super(props);
     this.state = {
       currentPage: 1,
-      tripsPerPage: 3,
+      tripsPerPage: 5,
       trips: [],
-      search: "",
     }    
     this.handleClick = this.handleClick.bind(this);
-    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
   
   handleClick(event) {
@@ -25,19 +23,13 @@ class TripsContainer extends Component {
   handleBodyChange(event) {
     this.setState({body: event.target.value})
   }
-  
-  handleSearchChange(event) {
-    this.setState({search: event.target.value})
-    console.log(this.state.search);
-  }
-  
+    
   componentWillReceiveProps(nextProps){
     if (nextProps.selectedCategoryId != this.props.selectedCategoryId){
       this.setState({ currentPage: 1})
     }
   }
-  
-  
+    
   componentDidMount() {
     fetch('/api/v1/trips').then(response => {
       if (response.ok) {
@@ -47,18 +39,18 @@ class TripsContainer extends Component {
         error = new Error(errorMessage);
         throw(error);
       }
-    }).then(response => response.json()).then(body => {
+    })
+    .then(response => response.json()).then(body => {
       this.setState({trips: body.trips});
-    }).catch(error => console.error(`Error in fetch: ${error.message}`));
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }  
   
   render() {      
     let selectedCategory = this.props.selectedCategoryId    
     let trips = this.state.trips
-    let searched = this.state.search
     let tripsPerPage = this.state.tripsPerPage
-    let currentPage = this.state.currentPage    
-    
+    let currentPage = this.state.currentPage        
     let filteredTrips = this.state.trips.map(trip => {
       if (trip.categories != undefined) {
         var isPresent = trip.categories.some(function(element) {
@@ -74,9 +66,7 @@ class TripsContainer extends Component {
           trip
         )
       }
-    }).filter(x => x)
-    
-    
+    }).filter(x => x)    
     
     // Logic for displaying trips
     let indexOfLastTrip = currentPage * tripsPerPage;
@@ -114,7 +104,6 @@ class TripsContainer extends Component {
     
     return (
       <div>     
-        <input className="form-control mr-sm-2" type="search" name="search" aria-label="Search" onChange={this.handleSearchChange} />
         <Link to={`/trips/new`}><button type="button" className="btn btn-primary my-3">Add trip</button></Link>
         {renderTrips}
         <nav aria-label="Page navigation example">

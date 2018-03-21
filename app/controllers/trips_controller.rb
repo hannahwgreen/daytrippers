@@ -11,4 +11,8 @@ class TripsController < ApplicationController
     @user = current_user
     trip = Trip.find(params[:id])
   end
+
+  def search_results
+    @found_trips = Trip.keyword_search(params[:search_keywords])
+  end
 end
