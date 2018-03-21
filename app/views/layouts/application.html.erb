@@ -35,7 +35,7 @@
             <%- end -%>
             <%- if current_user.try(:admin?) %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Admin', users_path, class: "dropdown-item" %>
+            <%= link_to 'Admin', admin_index_path, class: "dropdown-item" %>
             <% end %>
           </div>
         </li>
@@ -49,11 +49,20 @@
   </nav>
   
   
-  <%- flash.each do |key, value| -%>
-  <div class="flash flash-<%= key %>">
-    <%= value %>
+  <div class="container">
+    <%- flash.each do |key, value| -%>
+    <div class="alert alert-<%= key %> mt-3 alert-dismissible fade show" role="alert">
+      <%= value %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <%- end -%>
+    <% flash.clear %>
   </div>
-  <%- end -%>
+  
+
+  
   
   <%= yield %>
   
