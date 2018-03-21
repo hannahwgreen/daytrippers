@@ -39,8 +39,12 @@
             <% end %>
           </div>
         </li>
-      </ul>
+      </ul>  
       
+      <%= form_tag(search_results_path, :method => 'get', class: "form-inline my-2 my-lg-0") do %>
+      <%= text_field_tag :search_keywords, nil, placeholder: "Search trips", class: "form-control mr-sm-2" %>
+      <%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil %>
+      <% end %>
     </div>
   </nav>
   

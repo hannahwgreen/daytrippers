@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update, :destroy]
   
   resources :trips
+  
+  get 'search_results' => 'trips#search_results', as: 'search_results'
     
   namespace :admin do
     resources :trips

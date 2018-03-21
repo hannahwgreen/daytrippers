@@ -1,0 +1,23 @@
+<div class="container mt-5">
+  <% if params[:search_keywords] == '' %>
+  <div class="alert alert-danger" role="alert">
+    The seach field cannot be blank.
+  </div>
+  <% elsif @found_trips.empty? %>
+  <h3>Search results for '<%= params[:search_keywords] %>'</h3>
+  <p>No results found.</p>
+  <% else %>
+  <h3>Search results for '<%= params[:search_keywords] %>'</h3>
+  <% @found_trips.each do |trip| %>      
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title"><%= trip.name %></h5>
+      <p class="card-text"><%= trip.description %></p>
+      <%= link_to 'Learn more', trip %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+
+
