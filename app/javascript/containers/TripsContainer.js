@@ -8,7 +8,7 @@ class TripsContainer extends Component {
     super(props);
     this.state = {
       currentPage: 1,
-      tripsPerPage: 3,
+      tripsPerPage: 5,
       trips: [],
     }    
     this.handleClick = this.handleClick.bind(this);
