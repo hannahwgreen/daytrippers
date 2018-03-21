@@ -31,8 +31,7 @@ class TripShowContainer extends Component {
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
   
-  render() {
-    
+  render() {    
     let trip_id = this.state.trip.id
     let trip_name = this.state.trip.name
     let trip_description = this.state.trip.description

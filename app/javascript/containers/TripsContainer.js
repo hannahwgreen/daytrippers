@@ -39,17 +39,18 @@ class TripsContainer extends Component {
         error = new Error(errorMessage);
         throw(error);
       }
-    }).then(response => response.json()).then(body => {
+    })
+    .then(response => response.json()).then(body => {
       this.setState({trips: body.trips});
-    }).catch(error => console.error(`Error in fetch: ${error.message}`));
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }  
   
   render() {      
     let selectedCategory = this.props.selectedCategoryId    
     let trips = this.state.trips
     let tripsPerPage = this.state.tripsPerPage
-    let currentPage = this.state.currentPage    
-    
+    let currentPage = this.state.currentPage        
     let filteredTrips = this.state.trips.map(trip => {
       if (trip.categories != undefined) {
         var isPresent = trip.categories.some(function(element) {
