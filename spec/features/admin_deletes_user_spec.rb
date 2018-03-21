@@ -13,7 +13,7 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
     click_button 'Log in'
     click_link 'Admin'
-    
+
     expect(page).to have_content('Admin Dashboard')
   end
 

@@ -1,9 +1,10 @@
+# admin controller
 class AdminController < ApplicationController
   before_action :authenticate_user!
 
   def index
     @user = current_user
-    
+
     if current_user.admin?
       @users = User.all.order(:display_name)
       @trips = Trip.all.order(:name)
@@ -12,5 +13,4 @@ class AdminController < ApplicationController
       redirect_to root_path
     end
   end
-
 end
