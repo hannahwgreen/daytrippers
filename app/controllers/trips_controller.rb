@@ -14,7 +14,7 @@ class TripsController < ApplicationController
 
   def edit
     @user = current_user
-    
+
     if current_user.admin?
       @trip = Trip.find(params[:id])
     else
@@ -43,7 +43,7 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find(params[:id])
-    
+
     if current_user.admin?
       @trip.destroy
       flash[:notice] = 'Trip deleted.'

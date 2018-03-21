@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = 'You need permission to see this page.'
       redirect_to root_path
-    end   
+    end
   end
 
   def update
