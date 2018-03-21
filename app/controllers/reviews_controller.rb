@@ -1,9 +1,10 @@
-class UsersController < ApplicationController
+# reviews controller
+class ReviewsController < ApplicationController
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
 
     if current_user.admin?
-      @user = User.find(params[:id])
+      @review = Review.find(params[:id])
     else
       flash[:alert] = 'You need permission to see this page.'
       redirect_to root_path
@@ -11,14 +12,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
+    @review = Review.find(params[:id])
 
     if current_user.admin?
-      if @user.update(user_params)
-        flash[:notice] = 'User was updated.'
+      if @review.update(review_params)
+        flash[:notice] = 'Review was updated.'
         redirect_to admin_index_path
       else
-        flash[:alert] = @user.errors.full_messages.first
+        flash[:alert] = @review.errors.full_messages.first
         render :edit
       end
     else
@@ -28,11 +30,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @review = review.find(params[:id])
 
     if current_user.admin?
-      @user.destroy
-      flash[:notice] = 'User account deleted.'
+      @review.destroy
+      flash[:notice] = 'Review deleted.'
       redirect_to admin_index_path
     else
       flash[:alert] = 'You need permission to see this page.'
@@ -42,7 +44,7 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:display_name, :email, :avatar)
+  def review_params
+    params.require(:review).permit(:body, :rating)
   end
 end
