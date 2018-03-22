@@ -2,8 +2,11 @@
   "name": "daytrippers",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.4",
+    "@fortawesome/react-fontawesome": "0.0.17",
     "@rails/webpacker": "~3.3.0",
     "babel-preset-react": "~6.24.1",
+    "bootstrap": "^3.3.7",
     "prop-types": "~15.6.0",
     "react": "~15.4.2",
     "react-dom": "~15.4.2",

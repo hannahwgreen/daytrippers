@@ -6,10 +6,13 @@ class TripShowContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      trip: {},
+      trip: {}
     }
+
   }
-  
+
+
+
   componentDidMount() {
     let id = this.props.params.id
     fetch(`/api/v1/trips/${id}`)
@@ -26,7 +29,7 @@ class TripShowContainer extends Component {
     .then(body => {
       this.setState({
         trip: body.trip
-      });      
+      });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -35,7 +38,7 @@ class TripShowContainer extends Component {
     let trip_id = this.state.trip.id
     let trip_name = this.state.trip.name
     let trip_description = this.state.trip.description
-    
+
     return(
       <div>
         <TripShow
@@ -46,6 +49,8 @@ class TripShowContainer extends Component {
         />
         <ReviewsContainer
           id={this.props.params.id}
+          upVote={this.upVote}
+          downVote={this.downVote}
         />
       </div>
     )

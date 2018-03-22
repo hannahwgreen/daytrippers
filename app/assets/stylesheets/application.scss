@@ -1,5 +1,14 @@
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+
+ .upvoted {
+  color: green;
+}
+
+.downvoted {
+  color: red;
+}
+
  .alert-alert {
    color: #721c24;
    background-color: #f8d7da;
@@ -15,3 +24,4 @@
  .nav-link {
    cursor: pointer;
  }
+
