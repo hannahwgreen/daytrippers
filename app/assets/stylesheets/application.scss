@@ -1,4 +1,3 @@
-// Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Mr+Dafoe);
 
@@ -53,3 +52,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0 );
 }
 
+.upvoted {
+  color: green;
+}
+
+.downvoted {
+  color: red;
+}
