@@ -35,13 +35,15 @@ class TripShowContainer extends Component {
     let trip_id = this.state.trip.id
     let trip_name = this.state.trip.name
     let trip_description = this.state.trip.description
-    
+    let trip_image = this.state.trip.image_url
+
     return(
       <div>
         <TripShow
           key={trip_id}
           id={trip_id}
           name={trip_name}
+          image={trip_image}
           description={trip_description}
         />
         <ReviewsContainer
