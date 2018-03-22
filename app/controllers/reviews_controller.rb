@@ -23,9 +23,6 @@ class ReviewsController < ApplicationController
         flash[:alert] = @review.errors.full_messages.first
         render :edit
       end
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 
@@ -36,9 +33,6 @@ class ReviewsController < ApplicationController
       @review.destroy
       flash[:notice] = 'Review deleted.'
       redirect_to admin_index_path
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 

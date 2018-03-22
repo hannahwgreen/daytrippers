@@ -7,9 +7,9 @@ feature 'admin deletes review', %Q{
 } do
   let!(:user) { FactoryBot.create(:random_user) }
   let!(:admin) { FactoryBot.create(:random_admin) }
-  let!(:trip1) { FactoryBot.create(:trip, user: admin) }
-  let!(:trip2) { FactoryBot.create(:trip, name: 'Atlantic City', user: admin) }
-  let!(:review) { FactoryBot.create(:review, user: user, trip: trip1) }
+  let!(:trip1) { FactoryBot.create(:random_trip, user: admin) }
+  let!(:trip2) { FactoryBot.create(:random_trip, name: 'Atlantic City', user: admin) }
+  let!(:review) { FactoryBot.create(:random_review, user: user, trip: trip1) }
   scenario 'visits users admin page' do
     admin.confirm
     visit new_user_session_path
@@ -20,7 +20,7 @@ feature 'admin deletes review', %Q{
     
     expect(page).to have_content(review.body)
     
-    click_link("delete-review-#{trip1.id}")
+    click_link("delete-review-#{review.id}")
     
     expect(page).to have_content('Review deleted.')
     expect(page).to have_no_content(review.body)

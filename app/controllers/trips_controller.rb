@@ -35,9 +35,6 @@ class TripsController < ApplicationController
         flash[:alert] = @trip.errors.full_messages.first
         render :edit
       end
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 
@@ -48,9 +45,6 @@ class TripsController < ApplicationController
       @trip.destroy
       flash[:notice] = 'Trip deleted.'
       redirect_to admin_index_path
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 
