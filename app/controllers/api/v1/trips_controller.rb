@@ -30,22 +30,6 @@ class Api::V1::TripsController < ApplicationController
     end
   end
 
-  def update
-    Trip.find(params[:id]).update(trip_params)
-    render json: { trip: Trip.find(params[:id]) }
-  end
-
-  def destroy
-    trip = Trip.find(params[:id])
-    trip.destroy
-    if current_user.admin?
-      flash[:notice] = 'Trip deleted'
-      redirect_to users_path
-    else
-      render json: { message: 'Your trip has been deleted' }
-    end
-  end
-
   private
 
   def trip_params

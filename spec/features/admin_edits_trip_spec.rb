@@ -1,13 +1,15 @@
 require 'rails_helper'
 
-feature 'user searches', %Q{
+feature 'admin edits', %Q{
   As an admin
   I want to edit a trip
   So that it shows something different
 } do
+  let!(:user) { FactoryBot.create(:user) }
   let!(:admin) { FactoryBot.create(:admin) }
   let!(:trip1) { FactoryBot.create(:trip, user: admin) }
   let!(:trip2) { FactoryBot.create(:trip, name: 'Atlantic City', user: admin) }
+  
   
   scenario 'edit an existing trip' do
     admin.confirm
@@ -18,11 +20,22 @@ feature 'user searches', %Q{
     
     visit edit_trip_path(trip2)
     
-    save_and_open_page
     fill_in 'Name', with: 'Ocean City'
     
     click_button 'Update'
     
     expect(page).to have_content('Ocean City')
   end  
+  
+  scenario 'try to edit a trip without being an admin' do
+    user.confirm
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+    
+    visit edit_trip_path(trip2)
+        
+    expect(page).to have_content('You need permission to see this page.')
+  end
 end

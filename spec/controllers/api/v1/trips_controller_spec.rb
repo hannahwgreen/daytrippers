@@ -65,48 +65,4 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     end
   end
 
-  describe 'PUT#update' do
-    it 'updates an existing trip' do
-      post_json = {
-        id: second_trip.id,
-        trip: {
-          name: 'Art Museum',
-          user_id: u1.id,
-          location_id: 3,
-          description: 'Cool trip.'
-        }
-      }
-      
-      prev_count = Trip.count
-      put(:update, params: post_json)
-      expect(Trip.count).to eq(prev_count)
-    end
-
-    it 'returns updated json of an existing trip' do
-      post_json = {
-        id: second_trip.id,
-        trip: {
-          name: 'Art Museum',
-          user_id: u1.id,
-          location_id: 3,
-          description: 'Cool trip.'
-        }
-      }
-
-      put(:update, params: post_json)
-      returned_json = JSON.parse(response.body)
-      expect(response.status).to eq 200
-      expect(response.content_type).to eq 'application/json'
-      expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json['trip']['name']).to eq 'Art Museum'
-    end
-  end
-
-  describe 'POST#destroy' do
-    it 'deletes an existing trip' do
-      prev_count = Trip.count
-      second_trip.destroy
-      expect(Trip.count).to eq(prev_count - 1)
-    end
-  end
 end

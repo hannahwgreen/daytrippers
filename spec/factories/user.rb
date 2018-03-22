@@ -15,4 +15,21 @@ FactoryBot.define do
     avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'photo.jpg'), 'image/jpeg') }
     admin true
   end
+  
+  factory :random_user, class: User do
+    display_name { Faker::Name.name }
+    sequence(:email) { Faker::Internet.email }
+    password 'phillyphilly'
+    password_confirmation 'phillyphilly'
+    avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'photo.jpg'), 'image/jpeg') }
+  end
+  
+  factory :random_admin, class: User do
+    display_name { Faker::Name.name }
+    sequence(:email) { Faker::Internet.email }
+    password 'phillyphilly'
+    password_confirmation 'phillyphilly'
+    avatar { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'support', 'images', 'photo.jpg'), 'image/jpeg') }
+    admin true
+  end
 end
