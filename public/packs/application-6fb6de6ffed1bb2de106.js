@@ -37458,6 +37458,7 @@ var TripShowContainer = function (_Component) {
       var trip_id = this.state.trip.id;
       var trip_name = this.state.trip.name;
       var trip_description = this.state.trip.description;
+      var trip_image = this.state.trip.image_url;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -37466,6 +37467,7 @@ var TripShowContainer = function (_Component) {
           key: trip_id,
           id: trip_id,
           name: trip_name,
+          image: trip_image,
           description: trip_description
         }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__ReviewsContainer__["a" /* default */], {
@@ -37499,20 +37501,27 @@ var TripShowContainer = function (_Component) {
 
 
 var TripShow = function TripShow(props) {
+  var background_image = '';
+  if (props.image != null) {
+    background_image = { backgroundImage: 'url(' + props.image + ')', backgroundSize: 'cover', backgroundPosition: 'center' };
+  } else {
+    background_image = { backgroundImage: 'url(\'https://assets.visitphilly.com/wp-content/uploads/2018/03/Benjamin_Franklin_Parkway_philadelphia-museum-of-art-parkway-photo-by-vp-2200x480px-1600x480.jpg\')', backgroundSize: 'cover' };
+  }
+
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
     'div',
-    { className: 'jumbotron jumbotron-fluid' },
+    { className: 'jumbotron jumbotron-fluid', style: background_image },
     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'div',
       { className: 'container' },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'h1',
-        { className: 'display-4' },
+        { className: 'display-4 trip-name' },
         props.name
       ),
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'p',
-        { className: 'lead' },
+        { className: 'lead trip-description' },
         props.description
       )
     )
@@ -38093,4 +38102,4 @@ var ReviewTextAreaField = function ReviewTextAreaField(props) {
 
 /***/ })
 /******/ ]);
-//# sourceMappingURL=application-106f8b623aa6828e3465.js.map
+//# sourceMappingURL=application-6fb6de6ffed1bb2de106.js.map

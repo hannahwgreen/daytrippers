@@ -4,6 +4,7 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import url(https://fonts.googleapis.com/css?family=Mr+Dafoe);
 /* line 1, /Users/hannahgreen/.gem/ruby/2.3.3/gems/bootstrap-4.0.0/assets/stylesheets/bootstrap/_root.scss */
 :root {
   --blue: #007bff;
@@ -9972,30 +9973,76 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /* line 4, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
-.upvoted {
-  color: green;
-}
-
-/* line 8, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
-.downvoted {
-  color: red;
-}
-
-/* line 12, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
 .alert-alert {
   color: #721c24;
   background-color: #f8d7da;
   border-color: #f5c6cb;
 }
 
-/* line 18, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+/* line 10, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
 .alert-notice {
   color: #383d41;
   background-color: #e2e3e5;
   border-color: #d6d8db;
 }
 
-/* line 24, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+/* line 16, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
 .nav-link {
   cursor: pointer;
+}
+
+/* line 20, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.trip-name {
+  background: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+/* line 26, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.trip-description {
+  background: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+/* line 32, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.titlehead {
+  font-family: 'Mr Dafoe', Arial;
+  font-size: 2.25rem;
+  -webkit-filter: drop-shadow(3px 3px 1px #1F5187);
+  -webkit-transform: skew(-5deg, -5deg);
+  transform: rotateY(20deg);
+}
+
+/* line 40, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.account-drop {
+  margin-left: 2rem;
+}
+
+/* line 44, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+body {
+  background: white;
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, white), color-stop(18%, whitesmoke), color-stop(33%, #ededed), color-stop(100%, #bdbdbd));
+  background: linear-gradient(to bottom, white 0%, whitesmoke 18%, #ededed 33%, #bdbdbd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bdbdbd', GradientType=0 );
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* line 57, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.navbar {
+  background: #499bea;
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #499bea), color-stop(55%, #207ce5), color-stop(100%, #207ce5));
+  background: linear-gradient(to bottom, #499bea 0%, #207ce5 55%, #207ce5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=0 );
+}
+
+/* line 68, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.upvoted {
+  color: green;
+}
+
+/* line 72, /Users/hannahgreen/Desktop/challenges/daytrippers/app/assets/stylesheets/application.scss */
+.downvoted {
+  color: red;
 }
