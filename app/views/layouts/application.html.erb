@@ -11,9 +11,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
 </head>
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <%= link_to 'Daytrippers', root_path, class: "navbar-brand" %>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <%= link_to 'DAYTRIPPERS', root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -38,21 +37,30 @@
             <%- end -%>
             <%- if current_user.try(:admin?) %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Admin', users_path, class: "dropdown-item" %>
+            <%= link_to 'Admin', admin_index_path, class: "dropdown-item" %>
             <% end %>
           </div>
         </li>
-      </ul>
-
+      </ul>  
+      
+      <%= form_tag(search_results_path, :method => 'get', class: "form-inline my-2 my-lg-0") do %>
+      <%= text_field_tag :search_keywords, nil, placeholder: "Search trips", class: "form-control mr-sm-2" %>
+      <%= submit_tag "Search", class: "btn btn-outline-light my-2 my-sm-0", :name => nil %>
+      <% end %>
     </div>
   </nav>
-
-
-  <%- flash.each do |key, value| -%>
-  <div class="flash flash-<%= key %>">
-    <%= value %>
+  
+  <div class="container">
+    <%- flash.each do |key, value| -%>
+    <div class="alert alert-<%= key %> mt-3 alert-dismissible fade show" role="alert">
+      <%= value %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <%- end -%>
+    <% flash.clear %>
   </div>
-  <%- end -%>
 
   <%= yield %>
 

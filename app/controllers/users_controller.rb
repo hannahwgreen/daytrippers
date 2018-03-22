@@ -1,34 +1,31 @@
 class UsersController < ApplicationController
-  def index
-    @user = current_user
-    if current_user.try(:admin?)
-      @users = User.all.order(:display_name)
-      @trips = Trip.all
-    else
-      flash[:notice] = 'You need permission to see this page'
-      redirect_to root_path
+  before_action :authenticate_user!
+  def edit
+    if current_user.admin?
+      @user = User.find(params[:id])
+    end
+  end
+
+  def update
+    if current_user.admin?
+      @user = User.find(params[:id])
+      if @user.update(user_params)
+        flash[:notice] = 'User was updated.'
+        redirect_to admin_index_path
+      else
+        flash[:alert] = @user.errors.full_messages.first
+        render :edit
+      end
     end
   end
 
   def destroy
-    @users = User.all
-    @user = User.find(params[:id])
-
     if current_user.admin?
+      @user = User.find(params[:id])
       @user.destroy
-      flash[:notice] = 'User account deleted'
-      render :index
+      flash[:notice] = 'User account deleted.'
+      redirect_to admin_index_path
     end
-  end
-
-  def edit
-    @user = User.find(params[:id])
-    render :edit
-  end
-
-  def update
-    User.find(params[:id]).update(user_params)
-    redirect_to users_path
   end
 
   private

@@ -41,6 +41,8 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :development do
@@ -55,8 +57,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pry-rails', group: [:development, :test]
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]
+gem 'factory_bot_rails', '~> 4.0'
 gem 'launchy', group: [:development, :test]
-gem 'factory_bot', group: [:development, :test]
 gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
