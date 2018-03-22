@@ -10,7 +10,16 @@ class Api::V1::TripsController < ApplicationController
 
   def show
     trip = Trip.find(params[:id])
-    render json: { trip: trip, reviews: trip.reviews }
+    if current_user
+      @user = current_user
+      @userVotes = Vote.where('user_id = ? AND trip_id = ?', @user.id, params[:trip_id])
+    else
+      @userVotes = []
+    end
+      render json: {
+          userVotes: @userVotes,
+          trip: trip
+        }
   end
 
   def create

@@ -1,9 +1,34 @@
 class Api::V1::ReviewsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
+  before_action :authenticate_user!
 
   def index
-    reviews = Review.where(trip_id: params[:trip_id]).order('updated_at desc')
-    render json: reviews
+    @reviews = Review.where(trip_id: params[:trip_id]).order('created_at desc')
+    @reviews = @reviews.map { |review|
+      {
+        review: review,
+        avatar: review.user.avatar,
+        display_name: review.user.display_name,
+        votes: review.votes
+      }
+    }
+
+    @userVotes = []
+    @reviews.each do |review|
+
+      if review[:review].votes
+        review[:review].votes.each do |vote|
+          if vote.user_id = current_user.id
+            @userVotes << vote
+          end
+        end
+      end
+    end
+
+    render json: {
+      reviews: @reviews,
+      userVotes: @userVotes
+    }
   end
 
   def create
@@ -16,6 +41,7 @@ class Api::V1::ReviewsController < ApplicationController
       review.user = User.find(params[:user_id])
     end
     review.trip_id = trip.id
+    binding.pry
     if review.save
       render json: { review: review }
     else
