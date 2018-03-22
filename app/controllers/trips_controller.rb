@@ -1,5 +1,6 @@
+# trips controller
 class TripsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :new, :show]
+  before_action :authenticate_user!, except: [:index, :new, :show, :search_results]
   def index
     @user = current_user
   end

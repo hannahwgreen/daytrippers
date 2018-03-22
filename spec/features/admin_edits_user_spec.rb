@@ -14,25 +14,10 @@ feature 'admin edits user', %Q{
     fill_in 'Email', with: admin.email
     fill_in 'Password', with: admin.password
     click_button 'Log in'
-    
     visit edit_user_path(user)
-    
     fill_in 'Display name', with: 'Joel Embiid'
-    
     click_button 'Update'
-    
+
     expect(page).to have_content('Joel Embiid')
-  end  
-  
-  scenario 'try to edit a user without being an admin' do
-    user.confirm
-    visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Log in'
-    
-    visit edit_user_path(user)
-        
-    expect(page).to have_content('You need permission to see this page.')
-  end
+  end    
 end
