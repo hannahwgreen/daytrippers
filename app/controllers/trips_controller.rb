@@ -1,4 +1,5 @@
 class TripsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :new, :show]
   def index
     @user = current_user
   end
@@ -17,9 +18,6 @@ class TripsController < ApplicationController
 
     if current_user.admin?
       @trip = Trip.find(params[:id])
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 
