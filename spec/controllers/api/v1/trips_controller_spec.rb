@@ -66,5 +66,4 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       expect(returned_json['trip']['name']).to eq 'Art Museum'
     end
   end
-
 end

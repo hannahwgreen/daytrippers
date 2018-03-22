@@ -42,5 +42,4 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(returned_json['review']['user_id']).to eq u1.id
     end
   end
-
 end

@@ -14,11 +14,11 @@ feature 'admin deletes trip', %Q{
     fill_in 'Password', with: admin.password
     click_button 'Log in'
     click_link 'Admin'
-    
+
     expect(page).to have_content('Philadelphia')
-    
+
     click_link("delete-trip-#{trip1.id}")
-    
+
     expect(page).to have_content('Trip deleted.')
     expect(page).to have_no_content('Philadelphia')
   end

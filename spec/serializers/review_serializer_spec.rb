@@ -5,7 +5,7 @@ RSpec.describe ReviewSerializer, type: :serializer do
   let!(:admin) { FactoryBot.create(:random_admin) }
   let!(:trip1) { FactoryBot.create(:random_trip, user: admin) }
   let!(:trip2) { FactoryBot.create(:random_trip, name: 'Atlantic City', user: admin) }
-  let!(:review) { FactoryBot.create(:random_review, user: user, trip: trip1) }    
+  let!(:review) { FactoryBot.create(:random_review, user: user, trip: trip1) }
   let(:serializer) { described_class.new(review) }
   let(:serialization) { ActiveModelSerializers::Adapter.create(serializer) }
   let(:subject) { JSON.parse(serialization.to_json) }

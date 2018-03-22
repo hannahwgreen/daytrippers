@@ -2,7 +2,7 @@
 class Api::V1::TripsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
   skip_before_action :verify_authenticity_token
-  
+
   def index
     trips = Trip.order('LOWER(name)')
     render json: trips

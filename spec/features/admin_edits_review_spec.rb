@@ -10,20 +10,20 @@ feature 'admin edits', %Q{
   let!(:trip1) { FactoryBot.create(:trip, user: admin) }
   let!(:trip2) { FactoryBot.create(:trip, name: 'Atlantic City', user: admin) }
   let!(:review) { FactoryBot.create(:random_review, user: user, trip: trip1) }
-  
+
   scenario 'edit an existing review' do
     admin.confirm
     visit new_user_session_path
     fill_in 'Email', with: admin.email
     fill_in 'Password', with: admin.password
     click_button 'Log in'
-    
+
     visit edit_review_path(review)
-    
+
     fill_in 'Body', with: 'It was OK.'
-    
+
     click_button 'Update'
-    
+
     expect(page).to have_content('It was OK.')
   end  
   
@@ -33,9 +33,9 @@ feature 'admin edits', %Q{
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    
+
     visit edit_review_path(review)
-        
+
     expect(page).to have_content('You need permission to see this page.')
   end
 end

@@ -7,7 +7,7 @@ feature 'admin edits user', %Q{
 } do
   let!(:user) { FactoryBot.create(:random_user) }
   let!(:admin) { FactoryBot.create(:random_admin) }
-  
+
   scenario 'edit an existing user' do
     admin.confirm
     visit new_user_session_path
@@ -19,5 +19,5 @@ feature 'admin edits user', %Q{
     click_button 'Update'
 
     expect(page).to have_content('Joel Embiid')
-  end    
+  end
 end

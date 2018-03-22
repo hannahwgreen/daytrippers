@@ -9,7 +9,7 @@ feature 'admin edits', %Q{
   let!(:admin) { FactoryBot.create(:admin) }
   let!(:trip1) { FactoryBot.create(:trip, user: admin) }
   let!(:trip2) { FactoryBot.create(:trip, name: 'Atlantic City', user: admin) }
-  
+
   scenario 'edit an existing trip' do
     admin.confirm
     visit new_user_session_path
@@ -23,5 +23,5 @@ feature 'admin edits', %Q{
     click_button 'Update'
 
     expect(page).to have_content('Ocean City')
-  end  
+  end
 end

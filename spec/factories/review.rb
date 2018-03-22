@@ -5,7 +5,7 @@ FactoryBot.define do
     trip
     user
   end
-  
+
   factory :random_review, class: Review do
     body { Faker::Seinfeld.quote }
     rating 3

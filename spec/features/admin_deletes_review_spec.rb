@@ -17,11 +17,11 @@ feature 'admin deletes review', %Q{
     fill_in 'Password', with: admin.password
     click_button 'Log in'
     click_link 'Admin'
-    
+
     expect(page).to have_content(review.body)
-    
+
     click_link("delete-review-#{review.id}")
-    
+
     expect(page).to have_content('Review deleted.')
     expect(page).to have_no_content(review.body)
   end
