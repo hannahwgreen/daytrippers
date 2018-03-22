@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'admin signs in', %Q{
+feature 'admin deletes user', %Q{
   As a signed up admin
   I want to sign in
   So that I can delete a user
