@@ -54,24 +54,6 @@ class Api::V1::ReviewsController < ApplicationController
     end
   end
 
-  def update
-    user = User.find(params[:user_id])
-    trip = Trip.find(params[:trip_id])
-    review = Review.find(params[:id]).update(review_params)
-    render json: { review: Review.find(params[:id]) }
-  end
-
-  def destroy
-    review = Review.find(params[:id])
-    review.destroy
-    if current_user.admin?
-      flash[:notice] = 'Review deleted'
-      redirect_to users_path
-    else
-      render json: { message: 'Your review has been deleted' }
-    end
-  end
-
   private
 
   def review_params

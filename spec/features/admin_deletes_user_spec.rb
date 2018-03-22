@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'admin signs in', %Q{
+feature 'admin deletes user', %Q{
   As a signed up admin
   I want to sign in
   So that I can delete a user
@@ -13,22 +13,25 @@ feature 'admin signs in', %Q{
     fill_in 'Password', with: user.password
     click_button 'Log in'
     click_link 'Admin'
-    expect(page).to have_content('Admin Page')
+
+    expect(page).to have_content('Admin Dashboard')
   end
 
   scenario 'deletes user' do
-    user = FactoryBot.create(:admin)
+    user = FactoryBot.create(:user)
     user.confirm
+    admin = FactoryBot.create(:admin)
+    admin.confirm
     visit new_user_session_path
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
+    fill_in 'Email', with: admin.email
+    fill_in 'Password', with: admin.password
     click_button 'Log in'
     click_link 'Admin'
 
-    expect(page).to have_content('Admin Page')
+    expect(page).to have_content('Admin Dashboard')
 
-    click_link('Delete')
+    first('.list-unstyled').first('li').click_link('Delete')
 
-    expect(page).to have_content('User account deleted')
+    expect(page).to have_content('User account deleted.')
   end
 end

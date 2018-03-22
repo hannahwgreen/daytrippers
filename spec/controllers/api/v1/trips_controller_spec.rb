@@ -8,7 +8,8 @@ RSpec.describe Api::V1::TripsController, type: :controller do
   let!(:u1) { User.create(email: 'joe@joe.com', password: 'phillyphilly', display_name: 'joe') }
   let!(:first_trip) { Trip.create(name: 'Liberty Bell', user_id: u1.id, location_id: 3, description: 'Cool trip.') }
   let!(:second_trip) { Trip.create(name: 'Jersey Shore', user_id: u1.id, location_id: 3, description: 'Bad trip.') }
-
+  let!(:review) { FactoryBot.create(:random_review, user: u1, trip: second_trip) }
+  
   describe 'GET#index' do
     it 'should return a list of all trips' do
       get :index
@@ -27,6 +28,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
       expect(returned_json['trip']['name']).to eq 'Jersey Shore'
+      expect(returned_json['reviews'][0]['body']).to eq review.body
     end
   end
 
@@ -62,51 +64,6 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       
       expect(returned_json).to be_kind_of(Hash)
       expect(returned_json['trip']['name']).to eq 'Art Museum'
-    end
-  end
-
-  describe 'PUT#update' do
-    it 'updates an existing trip' do
-      post_json = {
-        id: second_trip.id,
-        trip: {
-          name: 'Art Museum',
-          user_id: u1.id,
-          location_id: 3,
-          description: 'Cool trip.'
-        }
-      }
-      
-      prev_count = Trip.count
-      put(:update, params: post_json)
-      expect(Trip.count).to eq(prev_count)
-    end
-
-    it 'returns updated json of an existing trip' do
-      post_json = {
-        id: second_trip.id,
-        trip: {
-          name: 'Art Museum',
-          user_id: u1.id,
-          location_id: 3,
-          description: 'Cool trip.'
-        }
-      }
-
-      put(:update, params: post_json)
-      returned_json = JSON.parse(response.body)
-      expect(response.status).to eq 200
-      expect(response.content_type).to eq 'application/json'
-      expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json['trip']['name']).to eq 'Art Museum'
-    end
-  end
-
-  describe 'POST#destroy' do
-    it 'deletes an existing trip' do
-      prev_count = Trip.count
-      second_trip.destroy
-      expect(Trip.count).to eq(prev_count - 1)
     end
   end
 end
