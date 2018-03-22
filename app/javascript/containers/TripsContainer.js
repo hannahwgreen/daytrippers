@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import TripTile from '../components/TripTile';
 import TripFormContainer from './TripFormContainer';
-import { Link } from 'react-router';
 
 class TripsContainer extends Component {
   constructor(props) {
@@ -103,8 +102,7 @@ class TripsContainer extends Component {
     });
     
     return (
-      <div>     
-        <Link to={`/trips/new`}><button type="button" className="btn btn-primary my-3">Add trip</button></Link>
+      <div>             
         {renderTrips}
         <nav aria-label="Page navigation example">
           <ul className="pagination">

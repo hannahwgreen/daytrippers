@@ -7,7 +7,7 @@ const TripTile = (props) => {
       <div className="card-body">
         <h5 className="card-title">{props.name}</h5>
         <p className="card-text">{props.description}</p>
-        <Link to={`/trips/${props.id}`}>Learn more</Link>
+        <Link className="text-success" to={`/trips/${props.id}`}>Learn more</Link>
       </div>
     </div>
   )
