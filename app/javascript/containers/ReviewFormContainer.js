@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReviewTextField from '../components/ReviewTextField';
 import ReviewTextAreaField from '../components/ReviewTextAreaField';
 import {browserHistory} from 'react-router';
 
@@ -18,11 +17,11 @@ class ReviewFormContainer extends Component {
     this.validateRating = this.validateRating.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  
   handleBodyChange(event) {
     this.setState({body: event.target.value})
   }
-
+  
   handleRatingChange(event) {
     this.setState({rating: event.target.value})
   }
@@ -74,7 +73,7 @@ class ReviewFormContainer extends Component {
       this.handleClear(event);
     }
   }
-
+  
   render() {
     let errorDiv;
     let errorItems;
@@ -86,7 +85,7 @@ class ReviewFormContainer extends Component {
     }
     
     return(      
-      <form className="new-review-form callout" onSubmit={this.handleSubmit}>
+      <form className="new-review-form callout mb-5" onSubmit={this.handleSubmit}>
         <h3>Add review for this trip</h3>
         {errorDiv}
         <ReviewTextAreaField
@@ -95,12 +94,32 @@ class ReviewFormContainer extends Component {
           name="review"
           handlerFunction={this.handleBodyChange}
         />
-        <ReviewTextField
-          content={this.state.rating}
-          label="Rating"
-          name="rating"
-          handlerFunction={this.handleRatingChange}
-        />
+        <div className="form-group">
+          <label className="mr-3">Rating</label>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="rating" id="inlineRadio1" value="1" onChange={this.handleRatingChange} />
+            <label className="form-check-label" for="inlineRadio1">1</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="rating" id="inlineRadio2" value="2" onChange={this.handleRatingChange} />
+            <label className="form-check-label" for="inlineRadio2">2</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="rating" id="inlineRadio3" value="3" onChange={this.handleRatingChange} />
+            <label className="form-check-label" for="inlineRadio3">3</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="rating" id="inlineRadio4" value="4" onChange={this.handleRatingChange} />
+            <label className="form-check-label" for="inlineRadio3">4</label>
+          </div>
+          <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" name="rating" id="inlineRadio5" value="5" onChange={this.handleRatingChange} />
+            <label className="form-check-label" for="inlineRadio3">5</label>
+          </div>
+        </div>
+        
+        
+        
         <div className="button-group">
           <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
         </div>

@@ -1,4 +1,6 @@
+# trips controller
 class TripsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :new, :show, :search_results]
   def index
     @user = current_user
   end
@@ -17,9 +19,6 @@ class TripsController < ApplicationController
 
     if current_user.admin?
       @trip = Trip.find(params[:id])
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 
@@ -35,9 +34,6 @@ class TripsController < ApplicationController
         flash[:alert] = @trip.errors.full_messages.first
         render :edit
       end
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 
@@ -48,9 +44,6 @@ class TripsController < ApplicationController
       @trip.destroy
       flash[:notice] = 'Trip deleted.'
       redirect_to admin_index_path
-    else
-      flash[:alert] = 'You need permission to see this page.'
-      redirect_to root_path
     end
   end
 

@@ -4,10 +4,10 @@
       The seach field cannot be blank.
     </div>
   <% elsif @found_trips.empty? %>
-    <h3>Search results for '<%= params[:search_keywords] %>'</h3>
+    <h3 class="mb-3">Search results for '<%= params[:search_keywords] %>'</h3>
     <p>No results found.</p>
   <% else %>
-    <h3>Search results for '<%= params[:search_keywords] %>'</h3>
+    <h3 class="mb-3">Search results for '<%= params[:search_keywords] %>'</h3>
     <% @found_trips.each do |trip| %>      
       <div class="card mb-3">
         <div class="card-body">

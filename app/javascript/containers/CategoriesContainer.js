@@ -54,8 +54,9 @@ class CategoriesContainer extends Component {
     })
     
     return(
-      <div>
-        <ul className="nav nav-pills nav-fill bg-light text-dark">
+      <div className="p-3 mb-3 bg-light text-dark">
+        <h5 className="text-center">View by category</h5>
+        <ul className="nav nav-pills nav-fill">
           {categories}
         </ul>
       </div>
