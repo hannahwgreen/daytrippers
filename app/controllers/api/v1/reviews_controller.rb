@@ -41,7 +41,14 @@ class Api::V1::ReviewsController < ApplicationController
     end
     review.trip_id = trip.id
     if review.save
-      render json: { review: review }
+      render json: {
+        review: {
+          review: review,
+          avatar: review.user.avatar,
+          display_name: review.user.display_name,
+          votes: review.votes
+        }
+      }
     else
       render json: { errors: review.errors }
     end

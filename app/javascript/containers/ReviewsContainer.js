@@ -38,7 +38,13 @@ class ReviewsContainer extends Component {
       }
     })
     .then(response => response.json())
-    .then(body => window.location.href=window.location.href)
+    .then(body => {
+      let updateReviews = this.state.reviews
+      updateReviews.unshift(body.review)
+      this.setState({
+        reviews: updateReviews
+      })
+    })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 

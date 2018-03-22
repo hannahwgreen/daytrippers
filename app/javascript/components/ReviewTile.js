@@ -2,17 +2,20 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const ReviewTile = (props) => {
-  let upVoteClass = "fa fa-arrow-alt-circle-up"
-  let downVoteClass = "fa fa-arrow-alt-circle-down"
+  let buttonUpClass = "voter"
+  let buttonDownClass = "voter"
 
   if (props.userVotes) {
     let userVote = props.userVotes.filter(vote => {return vote.review_id == props.id})[0]
-    if (userVote.value == 2) {
-      upVoteClass = upVoteClass + " upvoted"
-    } else if (userVote.value == 0) {
-      downVoteClass = downVoteClass + " downvoted"
+    if (userVote) {
+      if (userVote.value == 2) {
+        buttonUpClass = buttonUpClass + " upvoted"
+      } else if (userVote.value == 0) {
+        buttonDownClass = buttonDownClass + " downvoted"
+      }
     }
   }
+
 
   return(
     <div className="media mb-4">
@@ -24,12 +27,12 @@ const ReviewTile = (props) => {
       </div>
       <div className='scorebox'>
         <p>{props.score}</p>
-        <button onClick={props.upVote} type="button" className='voter'>
+        <button onClick={props.upVote} type="button" className={buttonUpClass}>
 
-            <i className={upVoteClass} aria-hidden="true"></i>
+            <i className="fa fa-arrow-alt-circle-up" aria-hidden="true"></i>
         </button>
-        <button onClick={props.downVote} type="button" className='voter'>
-            <i className={downVoteClass} aria-hidden="true"></i>
+        <button onClick={props.downVote} type="button" className={buttonDownClass}>
+            <i className="fa fa-arrow-alt-circle-down" aria-hidden="true"></i>
         </button>
       </div>
     </div>
