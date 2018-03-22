@@ -4,7 +4,7 @@ class Api::V1::TripsController < ApplicationController
   skip_before_action :verify_authenticity_token
   
   def index
-    trips = Trip.order(:name)
+    trips = Trip.order('LOWER(name)')
     render json: trips
   end
 
