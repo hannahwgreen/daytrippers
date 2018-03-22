@@ -16,5 +16,5 @@ RSpec.describe ReviewSerializer, type: :serializer do
 
   it 'has a name that matches' do
     expect(subject['review']['body']).to eql(review.body)
-  end  
+  end
 end

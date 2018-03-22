@@ -25,8 +25,8 @@ feature 'admin edits', %Q{
     click_button 'Update'
 
     expect(page).to have_content('It was OK.')
-  end  
-  
+  end
+
   scenario 'try to edit a review without being an admin' do
     user.confirm
     visit new_user_session_path
