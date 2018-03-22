@@ -16,10 +16,10 @@ class Api::V1::TripsController < ApplicationController
     else
       @userVotes = []
     end
-      render json: {
-          userVotes: @userVotes,
-          trip: trip
-        }
+    render json: {
+      userVotes: @userVotes,
+      trip: trip
+    }
   end
 
   def create

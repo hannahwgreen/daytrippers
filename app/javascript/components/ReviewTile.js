@@ -25,6 +25,7 @@ const ReviewTile = (props) => {
       <div className='scorebox'>
         <p>{props.score}</p>
         <button onClick={props.upVote} type="button" className='voter'>
+
             <i className={upVoteClass} aria-hidden="true"></i>
         </button>
         <button onClick={props.downVote} type="button" className='voter'>

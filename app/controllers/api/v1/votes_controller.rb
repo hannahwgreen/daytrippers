@@ -2,9 +2,7 @@ class Api::V1::VotesController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
-
   def index
-
     @votes = Vote.where(review_id: params[:review_id])
   end
 
@@ -41,7 +39,6 @@ class Api::V1::VotesController < ApplicationController
       }
       @userVotes = []
       @reviews.each do |review|
-
         if review[:review].votes
           review[:review].votes.each do |vote|
             if vote.user_id = current_user.id
