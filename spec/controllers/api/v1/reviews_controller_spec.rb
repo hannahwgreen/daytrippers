@@ -8,7 +8,8 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
 
   describe 'POST#create' do
     it 'creates a new review' do
-
+      u1.confirm
+      sign_in u1
       post_json = {
         review: {
           rating: 4,
@@ -24,6 +25,8 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     end
 
     it 'returns the json of the newly posted review' do
+      u1.confirm
+      sign_in u1
       post_json = {
         review: {
           rating: 4,
@@ -39,7 +42,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.content_type).to eq 'application/json'
 
       expect(returned_json).to be_kind_of(Hash)
-      expect(returned_json['review']['user_id']).to eq u1.id
+      expect(returned_json['review']['review']['user_id']).to eq u1.id
     end
   end
 end

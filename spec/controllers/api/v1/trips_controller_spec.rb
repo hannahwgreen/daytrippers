@@ -9,7 +9,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
   let!(:first_trip) { Trip.create(name: 'Liberty Bell', user_id: u1.id, location_id: 3, description: 'Cool trip.') }
   let!(:second_trip) { Trip.create(name: 'Jersey Shore', user_id: u1.id, location_id: 3, description: 'Bad trip.') }
   let!(:review) { FactoryBot.create(:random_review, user: u1, trip: second_trip) }
-  
+
   describe 'GET#index' do
     it 'should return a list of all trips' do
       get :index
@@ -24,11 +24,9 @@ RSpec.describe Api::V1::TripsController, type: :controller do
     it 'should give more information about selected trip' do
       get :show, params: { id: second_trip.id }
       returned_json = JSON.parse(response.body)
-      
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
       expect(returned_json['trip']['name']).to eq 'Jersey Shore'
-      expect(returned_json['reviews'][0]['body']).to eq review.body
     end
   end
 
@@ -61,7 +59,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(response.content_type).to eq 'application/json'
-      
+
       expect(returned_json).to be_kind_of(Hash)
       expect(returned_json['trip']['name']).to eq 'Art Museum'
     end
