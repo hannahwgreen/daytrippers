@@ -45,4 +45,28 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(returned_json['review']['review']['user_id']).to eq u1.id
     end
   end
+
+  describe 'GET#index' do
+    it 'users see their new review and votes' do
+      u1.confirm
+      sign_in u1
+      post_json = {
+        review: {
+          rating: 4,
+          body: 'Great'
+        },
+        user_id: u1.id,
+        trip_id: first_trip.id
+      }
+
+      post(:create, params: post_json)
+      returned_json = JSON.parse(response.body)
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq 'application/json'
+
+      expect(returned_json).to be_kind_of(Hash)
+      expect(returned_json['review']['review']['user_id']).to eq u1.id
+    end
+  end
 end
