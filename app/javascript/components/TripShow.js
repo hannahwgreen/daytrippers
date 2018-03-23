@@ -6,7 +6,7 @@ const TripShow = (props) => {
   if(props.image != null) {
     background_image = {backgroundImage: `url(${props.image})`, backgroundSize: 'cover', backgroundPosition: 'center' };
   } else {
-    background_image = {backgroundImage: `url('https://assets.visitphilly.com/wp-content/uploads/2018/03/Benjamin_Franklin_Parkway_philadelphia-museum-of-art-parkway-photo-by-vp-2200x480px-1600x480.jpg')`, backgroundSize: 'cover'};
+    background_image = {backgroundImage: `url('https://www.bb-nj.com/wp-content/uploads/2018/01/brigantine-beach-sandy-sunset.jpeg')`, backgroundSize: 'cover'};
   }
   
   return(

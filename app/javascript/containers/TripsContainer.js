@@ -7,7 +7,7 @@ class TripsContainer extends Component {
     super(props);
     this.state = {
       currentPage: 1,
-      tripsPerPage: 5,
+      tripsPerPage: 6,
       trips: [],
     }    
     this.handleClick = this.handleClick.bind(this);
@@ -22,13 +22,13 @@ class TripsContainer extends Component {
   handleBodyChange(event) {
     this.setState({body: event.target.value})
   }
-    
+  
   componentWillReceiveProps(nextProps){
     if (nextProps.selectedCategoryId != this.props.selectedCategoryId){
       this.setState({ currentPage: 1})
     }
   }
-    
+  
   componentDidMount() {
     fetch('/api/v1/trips').then(response => {
       if (response.ok) {
@@ -71,39 +71,43 @@ class TripsContainer extends Component {
     let indexOfLastTrip = currentPage * tripsPerPage;
     let indexOfFirstTrip= indexOfLastTrip - tripsPerPage;
     let currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);             
-         
     
     let renderTrips = currentTrips.map(trip => {
       return (
-          <TripTile 
-            key={trip.id}
-            id={trip.id}
-            name={trip.name}
-            description={trip.description}
-          />
-        )      
+        <TripTile 
+          key={trip.id}
+          id={trip.id}
+          image={trip.image_url}
+          name={trip.name}
+          description={trip.description}
+        />
+      )      
     })
-  
-  // Logic for displaying page numbers
-  let pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(filteredTrips.length / tripsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  
-  let renderPageNumbers = pageNumbers.map(number => {
-    return (
-      <li
-        key={number}
-        className="page-item"
-        >
-          <a className="page-link" key={number} id={number} onClick={this.handleClick}>{number}</a>
-        </li>
-      );
-    });
+    
+    // Logic for displaying page numbers
+    let pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(filteredTrips.length / tripsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+    
+    let renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li
+          key={number}
+          className="page-item"
+          >
+            <a className="page-link" key={number} id={number} onClick={this.handleClick}>{number}</a>
+          </li>
+        );
+      }
+    );
     
     return (
-      <div>             
-        {renderTrips}
+      <div>
+          <div className="row">       
+            {renderTrips}
+          </div>
+        
         <nav aria-label="Page navigation example">
           <ul className="pagination">
             {renderPageNumbers}
