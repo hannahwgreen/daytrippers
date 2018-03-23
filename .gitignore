@@ -25,3 +25,5 @@ yarn-debug.log*
 .env
 Procfile
 /public/uploads
+public/packs/*
+!public/packs/manifest.json
