@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
 Trip.delete_all
-TripCategorizations.delete_all
+TripCategorization.delete_all
 Review.delete_all
 Category.delete_all
 
