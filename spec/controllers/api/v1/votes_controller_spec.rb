@@ -30,7 +30,6 @@ RSpec.describe Api::V1::VotesController, type: :controller do
       prev_count = Vote.count
       post(:create, params: post_json)
       expect(Vote.count).to eq(prev_count + 1)
-
     end
   end
 end

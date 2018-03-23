@@ -51,7 +51,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     it 'users see votes on the reviews' do
       u1.confirm
       sign_in u1
-      get(:index, params: {trip_id: first_trip.id})
+      get(:index, params: { trip_id: first_trip.id })
 
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
