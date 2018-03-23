@@ -1,13 +1,11 @@
 Daytrippers
 
-A site to review day trips to take in and around Philadelphia, PA
-
+A site to share and review day trips to take in and around Philadelphia, PA
 
 Michael Del Zotto
 Hannah Green
 Brett Holland
 Mark Stahl
-
 
 
 [![Build Status](https://codeship.com/projects/8d06ba60-084d-0136-da1b-46f3ea952830/status?branch=master)
