@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321202306) do
+ActiveRecord::Schema.define(version: 20180323163700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20180321202306) do
 
   create_table "trips", force: :cascade do |t|
     t.text "description"
-    t.string "image_url"
+    t.string "image_url", default: "https://www.bb-nj.com/wp-content/uploads/2018/01/brigantine-beach-sandy-sunset.jpeg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false

@@ -11,7 +11,6 @@ TripCategorization.delete_all
 Review.delete_all
 Category.delete_all
 
-
 u1 = User.create( display_name: 'Joe Schmoe', email: 'js@mailboys.com', password: 'phillyphilly' )
 u1.confirm
 u2 = User.create( display_name: 'Jane Doe', email: 'jd@mailgirlz.gov', password: 'phillyphilly', admin: true )
