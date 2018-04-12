@@ -1,4 +1,4 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
   root 'trips#index'
   devise_for :users
   get 'search_results' => 'trips#search_results', as: 'search_results'
