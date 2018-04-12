@@ -1,5 +1,7 @@
 Daytrippers
 
+This app is deployed at: https://philly-daytrippers.herokuapp.com/
+
 A site to share and review day trips to take in and around Philadelphia, PA
 
 Users can add, edit, and delete their own content from the site as well as view and review content posted by others.  There is also vote functionality, users can up or down vote each other's reviews.
